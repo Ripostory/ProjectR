@@ -12,6 +12,7 @@
 #include <EntityMgr.h>
 #include <GameMgr.h>
 #include <UiMgr.h>
+#include <PhysicsMgr.h>
 
 #include <Utils.h>
 
@@ -94,7 +95,6 @@ void InputMgr::Tick(float dt){
 //	mTrayMgr->frameRenderingQueued(fe);
 
 	UpdateCamera(dt);
-	UpdateVelocityAndSelection(dt);
 
 }
 
@@ -103,36 +103,89 @@ void InputMgr::UpdateCamera(float dt){
 	float rotate = 0.1f;
 
 	 Ogre::Vector3 dirVec = Ogre::Vector3::ZERO;
+	 Ogre::Vector3 cameraPosition = engine->gameMgr->cameraNode->getPosition();
+	 Ogre::Vector3 desiredPosition = engine->gameMgr->desiredCameraPosition;
+	 Ogre::Quaternion cameraOrientation = engine->gameMgr->cameraNode->getOrientation();
+	 Ogre::Quaternion desiredOrientation = engine->gameMgr->desiredOrientation;
 
-	  if (mKeyboard->isKeyDown(OIS::KC_W))
-	    dirVec.z -= move;
+	 //if(cameraPosition == desiredPosition && cameraOrientation == desiredOrientation)
+	// {
 
-	  if (mKeyboard->isKeyDown(OIS::KC_S))
-	    dirVec.z += move;
+	    if (mKeyboard->isKeyDown(OIS::KC_W))
+	    {
+	    	std::cout << "test " << engine->physicsMgr->getGravity().y << std::endl;
+		  if(engine->physicsMgr->getGravity().y == 9.8){
+			  engine->physicsMgr->setGravity(Ogre::Vector3(0, 0, 9.8));
+			  engine->gameMgr->cameraNode->setPosition(0, 900, 0);
+			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
+		  }
+		  else if(engine->physicsMgr->getGravity().z == 9.8){
+			  engine->physicsMgr->setGravity(Ogre::Vector3(0, -9.8, 0));
+			  engine->gameMgr->cameraNode->setPosition(0, 0, 900);
+			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
+	      }
+		  else if(engine->physicsMgr->getGravity().y == -9.8){
+		    	std::cout << "test2" << std::endl;
+			  engine->physicsMgr->setGravity(Ogre::Vector3(0,0, -9.8));
+			  engine->gameMgr->cameraNode->setPosition(0, -900, 0);
+			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
+	      }
+		  else if(engine->physicsMgr->getGravity().z == -9.8){
+			  engine->physicsMgr->setGravity(Ogre::Vector3(0,9.8,0));
+			  engine->gameMgr->cameraNode->setPosition(0, 0, -900);
+			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
+	      }
+	    }
+	// }
 
-	  if (mKeyboard->isKeyDown(OIS::KC_E))
-	    dirVec.y += move;
 
-	  if (mKeyboard->isKeyDown(OIS::KC_F))
-	    dirVec.y -= move;
+	 /*else
+	 {
+		 if(cameraPosition != desiredPosition)
+		 {
+			 if (cameraPosition.x > desiredPosition.x){
+				 engine->gameMgr->cameraNode->setPosition(cameraPosition.x + engine->gameMgr->cameraSpeed * dt, cameraPosition.y, cameraPosition.z);
+				 engine->gameMgr->cameraNode->translate(dirVec * dt, Ogre::Node::TS_LOCAL);
+			 }
+			 else if (cameraPosition.x < desiredPosition.x){
+				 engine->gameMgr->cameraNode->setPosition(cameraPosition.x + -1 * engine->gameMgr->cameraSpeed * dt, cameraPosition.y, cameraPosition.z);
+		 	 }
+			 if (cameraPosition.y > desiredPosition.y){
+				engine->gameMgr->cameraNode->setPosition(cameraPosition.x, cameraPosition.y + engine->gameMgr->cameraSpeed * dt, cameraPosition.z);
+			 }
+			 else if (cameraPosition.y < desiredPosition.y){
+					engine->gameMgr->cameraNode->setPosition(cameraPosition.x, cameraPosition.y + -1 * engine->gameMgr->cameraSpeed * dt, cameraPosition.z);
+			 }
+			 if (cameraPosition.z > desiredPosition.z){
+					engine->gameMgr->cameraNode->setPosition(cameraPosition.x, cameraPosition.y, cameraPosition.z + engine->gameMgr->cameraSpeed * dt);
+			 }
+			 else if (cameraPosition.z < desiredPosition.z){
+					engine->gameMgr->cameraNode->setPosition(cameraPosition.x, cameraPosition.y, cameraPosition.z + -1 * engine->gameMgr->cameraSpeed * dt);
+			 }
+		 }
+		 if(cameraOrientation != desiredOrientation)
+		 {
+			 if (cameraOrientation.x > desiredOrientation.x){
+				 engine->gameMgr->cameraNode->setOrientation(1 ,cameraOrientation.x + engine->gameMgr->cameraTurnRate * dt, cameraOrientation.y, cameraOrientation.z);
+			 }
+			 else if (cameraOrientation.x < desiredOrientation.x){
+				 engine->gameMgr->cameraNode->setOrientation(1, cameraOrientation.x + -1 * engine->gameMgr->cameraTurnRate * dt, cameraOrientation.y, cameraOrientation.z);
+		 	 }
+			 if (cameraOrientation.y > desiredOrientation.y){
+				engine->gameMgr->cameraNode->setOrientation(1, cameraOrientation.x, cameraOrientation.y + engine->gameMgr->cameraTurnRate * dt, cameraOrientation.z);
+			 }
+			 else if (cameraOrientation.y < desiredOrientation.y){
+					engine->gameMgr->cameraNode->setOrientation(1, cameraOrientation.x, cameraOrientation.y + -1 * engine->gameMgr->cameraTurnRate * dt, cameraOrientation.z);
+			 }
+			 if (cameraOrientation.z > desiredOrientation.z){
+					engine->gameMgr->cameraNode->setOrientation(1, cameraOrientation.x, cameraOrientation.y, cameraOrientation.z + engine->gameMgr->cameraTurnRate * dt);
+			 }
+			 else if (cameraOrientation.z < desiredOrientation.z){
+					engine->gameMgr->cameraNode->setOrientation(1, cameraOrientation.x, cameraOrientation.y, cameraOrientation.z + -1 * engine->gameMgr->cameraTurnRate * dt);
+			 }
+		 }*/
 
-	  if (mKeyboard->isKeyDown(OIS::KC_A))
-	  {
-	    if (mKeyboard->isKeyDown(OIS::KC_LSHIFT))
-		      engine->gameMgr->cameraNode->yaw(Ogre::Degree(5 * rotate));
-	    else
-	      dirVec.x -= move;
-	  }
-
-	  if (mKeyboard->isKeyDown(OIS::KC_D))
-	  {
-	    if (mKeyboard->isKeyDown(OIS::KC_LSHIFT))
-	      engine->gameMgr->cameraNode->yaw(Ogre::Degree(-5 * rotate));
-	    else
-	      dirVec.x += move;
-	  }
-
-	  engine->gameMgr->cameraNode->translate(dirVec * dt, Ogre::Node::TS_LOCAL);
+	 // engine->gameMgr->cameraNode->translate(dirVec * dt, Ogre::Node::TS_LOCAL);
 }
 
 void InputMgr::UpdateVelocityAndSelection(float dt){

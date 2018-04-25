@@ -23,7 +23,9 @@ public:
 	void MakeEntities();
 
 	Ogre::SceneNode *cameraNode;
-
+	Ogre::Vector3 desiredCameraPosition;
+	Ogre::Quaternion desiredOrientation;
+	Ogre::Real cameraSpeed, cameraTurnRate;
 };
 
 #endif /* GAMEMGR_H_ */

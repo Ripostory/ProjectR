@@ -38,20 +38,12 @@ void GameMgr::LoadLevel(){
 	  Ogre::Light* light = engine->gfxMgr->mSceneMgr->createLight("MainLight");
 	  light->setPosition(20.0, 80.0, 50.0);
 
-	  // a fixed point in the ocean so you can see relative motion
-
-	  Ogre::Entity* ogreEntityFixed = engine->gfxMgr->mSceneMgr->createEntity("ninja.mesh");
-	  Ogre::SceneNode* sceneNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0, 0, 0));
-	  sceneNode->attachObject(ogreEntityFixed);
-	  sceneNode->showBoundingBox(true);
-
 	  // A node to attach the camera to so we can move the camera node instead of the camera.
 	  cameraNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	  cameraNode->setPosition(0, 10, 10);
 	  cameraNode->attachObject(engine->gfxMgr->mCamera);
 
 	  engine->gfxMgr->MakeSky();
-	  MakeEntities();
 }
 
 void GameMgr::MakeEntities(){

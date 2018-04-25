@@ -40,22 +40,14 @@ void UiMgr::stop(){
 }
 
 void UiMgr::LoadLevel(){
-	mTrayMgr->createButton(OgreBites::TL_TOPLEFT, "MyButton", "Spawn Boat!");
-
-	Ogre::StringVector options;
-	options.push_back("Select Boat");
-	options.push_back("Spawn SpeedBoat");
-	options.push_back("Spawn Destroyer");
-	options.push_back("Spawn Carrier");
-	mTrayMgr->createLongSelectMenu(OgreBites::TL_TOPRIGHT, "MyMenu", "Menu", 300, 4,options);
-
 	mTrayMgr->showBackdrop("ECSLENT/UI");
 
-	mLabel = mTrayMgr->createLabel(OgreBites::TL_LEFT,"MyLabel","Label!",250);
+	mTrayMgr->createLabel(OgreBites::TL_CENTER,"MenuLabel","PROJECT R(ARRR)",250);
 
-	OgreBites::ProgressBar * pbar;
-	pbar = mTrayMgr->createProgressBar(OgreBites::TL_TOP,"HealthBar", "Health", 300, 200);
-	pbar->setProgress(100);
+	mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu1", "Start New Game", 250);
+	mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu2", "Load Save Game", 250);
+	mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu3", "Quit Game", 250);
+	mTrayMgr->createLabel(OgreBites::TL_BOTTOMLEFT,"DARE","Winners Don't do Drugs",250);
 }
 
 void UiMgr::Tick(float dt){
