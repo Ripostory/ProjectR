@@ -60,3 +60,8 @@ void GameMgr::MakeEntities(){
 	engine->entityMgr->SelectNextEntity(); //sets selection
 }
 
+
+
+
+
+

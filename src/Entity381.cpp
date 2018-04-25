@@ -8,7 +8,7 @@
 #include <GfxMgr.h>
 
 #include<Entity381.h>
-#include<Physics2D.h>
+#include<Physics3D.h>
 
 std::string IntToString(int x){
 	char tmp[10000];
@@ -35,7 +35,7 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
 	sceneNode = 0;
 	ogreEntity = 0;
 
-	Physics2D* phx = new Physics2D(this);
+	Physics3D* phx = new Physics3D(this);
 	aspects.push_back((Aspect*) phx);
 	Renderable * renderable = new Renderable(this);
 	aspects.push_back((Aspect*)renderable);

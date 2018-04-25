@@ -11,8 +11,18 @@
 #include "Entity381.h"
 #include <bullet/btBulletDynamicsCommon.h>
 
+#define PHYS_BOX 		0
+#define PHYS_SPHERE 	1
+#define PHYS_CAPSULE 	2
+#define PHYS_CYLINDER	3
+#define PHYS_CONE		4
+#define PHYS_HULL		5
+#define PHYS_S_MESH	6
+
 #ifndef PHYSICSMGR_H_
 #define PHYSICSMGR_H_
+
+
 
 class PhysicsMgr : public Mgr
 {
@@ -26,6 +36,7 @@ public:
 
 	Ogre::Vector3 getGravity();
 	void setGravity(Ogre::Vector3);
+	btDiscreteDynamicsWorld *physWorld;
 private:
 	Ogre::Vector3 gravity;
 
@@ -34,7 +45,6 @@ private:
     btCollisionDispatcher *physDispatcher;
     btBroadphaseInterface *overlapPairCache;
     btSequentialImpulseConstraintSolver *solver;
-    btDiscreteDynamicsWorld *physWorld;
 };
 
 

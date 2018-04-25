@@ -10,16 +10,39 @@
 
 #include <FlyingEntity381.h>
 #include <Physics2D.h>
+#include <bullet/btBulletDynamicsCommon.h>
+#include <PhysicsMgr.h>
 
-class Physics3D: public Physics2D {
+class Physics3D: public Aspect {
 public:
-	Physics3D(FlyingEntity381* ent);
+	Physics3D(Entity381* ent);
 	virtual ~Physics3D();
-
-	FlyingEntity381 *flyingEntity;
 
 	void Tick(float dt);
 
+	virtual void initPhysics();
+	void applyForce(Ogre::Vector3);
+
+    void setCollisionMesh(int base);
+    void setCollisionMesh(int box, Ogre::Vector3 size);
+    void setCollisionMesh(int sphere, float radius);
+    void setCollisionMesh(int capCylCone, float, float);
+    void setProperties(float mass, float friction, float restitution);
+    void setDamping(float, float);
+
+protected:
+    Ogre::Vector3 btToOgre(btVector3);
+    Ogre::Matrix4 btToOgre(btTransform);
+    btVector3 ogreToBt(Ogre::Vector3);
+    //btTransform ogreToBt(Ogre::Matrix4);
+
+    btRigidBody *physics;
+    btCollisionShape *shape;
+    btTransform transform;
+    float mass;
+    float friction;
+    float restitution;
+    bool isStatic;
 };
 
 #endif /* PHYSICS3D_H_ */
