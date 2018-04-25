@@ -40,7 +40,6 @@ void Physics3D::Tick(float dt){
 
 		  //TODO add more functionality
 		  entity->position = btToOgre(transform.getOrigin());
-		  std::cout << entity->position << std::endl;
 	  }
 }
 
@@ -113,8 +112,6 @@ void Physics3D::initPhysics()
 	//determine if static
 	if (isStatic)
 		mass = 0.0f;
-	else
-		mass = 1.0f;
 
 	btVector3 inertia(0,0,0);
 	shape->calculateLocalInertia(mass, inertia);

@@ -37,7 +37,7 @@ void PhysicsMgr::LoadLevel()
 void PhysicsMgr::Tick(float dt)
 {
     //Update the physics
-    physWorld->stepSimulation((float) dt/1000.0f, 30);
+    physWorld->stepSimulation((float) dt, 30);
 		physWorld->performDiscreteCollisionDetection();
 
 
