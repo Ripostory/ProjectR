@@ -33,9 +33,9 @@ void Engine::Init(){
 	gfxMgr    = new GfxMgr(this);
 	entityMgr = new EntityMgr(this);
 	gameMgr   = new GameMgr(this);
-	physicsMgr= new PhysicsMgr(this);
 	inputMgr  = new InputMgr(this);
 	uiMgr 	  = new UiMgr(this);
+	physicsMgr= new PhysicsMgr(this);
 
 	//--------------------------------------------------------------
 	gfxMgr->Init();

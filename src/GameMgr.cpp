@@ -10,6 +10,7 @@
 #include <EntityMgr.h>
 #include <GameMgr.h>
 #include <GfxMgr.h>
+#include <PhysicsMgr.h>
 
 #include <iostream>
 #include <Types381.h>
@@ -51,6 +52,7 @@ void GameMgr::LoadLevel(){
 	  cameraNode->attachObject(engine->gfxMgr->mCamera);
 
 	  engine->gfxMgr->MakeSky();
+	  engine->physicsMgr->makePlane();
 	  MakeEntities();
 }
 

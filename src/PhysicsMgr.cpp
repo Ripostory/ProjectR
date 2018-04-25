@@ -9,6 +9,7 @@
 
 PhysicsMgr::PhysicsMgr(Engine *ref) : Mgr(ref)
 {
+	gravity = Ogre::Vector3(0, -9.8, 0);
 }
 
 PhysicsMgr::~PhysicsMgr()
@@ -75,9 +76,24 @@ Ogre::Vector3 PhysicsMgr::getGravity()
 void PhysicsMgr::setGravity(Ogre::Vector3 ref)
 {
 	gravity = ref;
+	physWorld->setGravity(btVector3(gravity.x,gravity.y,gravity.z));
 }
 
+void PhysicsMgr::makePlane()
+{
+	btRigidBody *planeCollider;
+	btCollisionShape* groundShape =
+			new btStaticPlaneShape(btVector3(0, 1, 0), -10);
+	btDefaultMotionState* groundMotionState =
+	        new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
+	btRigidBody::btRigidBodyConstructionInfo
+	        groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
+	groundRigidBodyCI.m_restitution = 0.5f;
 
+	//add collider
+	planeCollider = new btRigidBody(groundRigidBodyCI);
+	physWorld->addRigidBody(planeCollider);
+}
 
 
 

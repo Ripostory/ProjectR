@@ -33,8 +33,8 @@ public:
 protected:
     Ogre::Vector3 btToOgre(btVector3);
     Ogre::Matrix4 btToOgre(btTransform);
+    Ogre::Matrix3 btToOgre(btMatrix3x3);
     btVector3 ogreToBt(Ogre::Vector3);
-    //btTransform ogreToBt(Ogre::Matrix4);
 
     btRigidBody *physics;
     btCollisionShape *shape;
