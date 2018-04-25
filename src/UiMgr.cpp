@@ -91,14 +91,9 @@ bool UiMgr::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id){
 }
 
 void UiMgr::buttonHit(OgreBites::Button *b){
-    if(b->getName()=="MyButton")
+    if(b->getName()=="MainMenu1")
     {
-        std::cout <<"Boat Spawned!" << std::endl;
-        Ogre::Vector3 pos;
-        pos.x = 0;
-        pos.y = 0;
-        pos.z = -100;
-        engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType,pos);
+    	mTrayMgr->hideAll();
     }
 
 }

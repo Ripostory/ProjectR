@@ -46,7 +46,6 @@ void GameMgr::LoadLevel(){
 
 	  engine->gfxMgr->MakeSky();
 	  engine->physicsMgr->makePlane();
-	  engine->gfxMgr->MakeGround();
 }
 
 
