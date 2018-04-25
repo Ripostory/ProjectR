@@ -15,13 +15,19 @@ Physics3D::Physics3D(Entity381 * ent): Aspect(ent) {
 	isStatic = false;
 	physics = NULL;
 	shape = new btSphereShape(1);
-	mass = 1.0f;
+	mass = 100.0f;
 	friction = 0.3f;
 	restitution = 0.2;
 	initPhysics();
 }
 
 Physics3D::~Physics3D() {
+	//remove self
+	if (physics != NULL)
+	{
+		entity->engine->physicsMgr->physWorld->removeRigidBody(physics);
+	}
+
 	if (shape != NULL)
 	{
 		//TODO check
@@ -40,6 +46,8 @@ void Physics3D::Tick(float dt){
 
 		  //TODO add more functionality
 		  entity->position = btToOgre(transform.getOrigin());
+		  //get quaternion from transform
+		  entity->sceneNode->rotate(Ogre::Quaternion(btToOgre(transform.getBasis())), Ogre::Node::TS_WORLD);
 	  }
 }
 
@@ -105,8 +113,8 @@ void Physics3D::initPhysics()
 	transform.setIdentity();
 
 	//apply glm world position to simulated world
-	//transform.setOrigin(glmToBt(glm::vec3(glm::vec4(0, 0, 0, 1) * glm::transpose(model))));
-	//glm::quat qt = glm::quat_cast(model);
+	transform.setOrigin(ogreToBt(entity->position));
+	//Ogre::Quaternion qt = Ogre::Quaternion(entity->sceneNode->getLocalAxes());
 	//transform.setRotation(btQuaternion(qt.x,qt.y,qt.z,qt.w));
 
 	//determine if static
@@ -145,6 +153,14 @@ Ogre::Matrix4 Physics3D::btToOgre(btTransform matrix)
 			*(x+8),*(x+9),*(x+10),*(x+11),
 			*(x+12),*(x+13),*(x+14),*(x+15));
 	return final;
+}
+
+Ogre::Matrix3 Physics3D::btToOgre(btMatrix3x3 input)
+{
+	return Ogre::Matrix3(
+			input[0][0],input[0][1],input[0][2],
+			input[1][0],input[1][1],input[1][2],
+			input[2][0],input[2][1],input[2][2]);
 }
 
 btVector3 Physics3D::ogreToBt(Ogre::Vector3 input)

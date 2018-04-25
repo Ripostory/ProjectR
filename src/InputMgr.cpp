@@ -114,23 +114,23 @@ void InputMgr::UpdateCamera(float dt){
 	    if (mKeyboard->isKeyDown(OIS::KC_W))
 	    {
 	    	std::cout << "test " << engine->physicsMgr->getGravity().y << std::endl;
-		  if(engine->physicsMgr->getGravity().y == 9.8){
+		  if(engine->physicsMgr->getGravity().y == Ogre::Real(9.8)){
 			  engine->physicsMgr->setGravity(Ogre::Vector3(0, 0, 9.8));
 			  engine->gameMgr->cameraNode->setPosition(0, 900, 0);
 			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
 		  }
-		  else if(engine->physicsMgr->getGravity().z == 9.8){
+		  else if(engine->physicsMgr->getGravity().z == Ogre::Real(9.8)){
 			  engine->physicsMgr->setGravity(Ogre::Vector3(0, -9.8, 0));
 			  engine->gameMgr->cameraNode->setPosition(0, 0, 900);
 			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
 	      }
-		  else if(engine->physicsMgr->getGravity().y == -9.8){
+		  if(engine->physicsMgr->getGravity().y == Ogre::Real(-9.8)){
 		    	std::cout << "test2" << std::endl;
 			  engine->physicsMgr->setGravity(Ogre::Vector3(0,0, -9.8));
 			  engine->gameMgr->cameraNode->setPosition(0, -900, 0);
 			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
 	      }
-		  else if(engine->physicsMgr->getGravity().z == -9.8){
+		  else if(engine->physicsMgr->getGravity().z == Ogre::Real(-9.8)){
 			  engine->physicsMgr->setGravity(Ogre::Vector3(0,9.8,0));
 			  engine->gameMgr->cameraNode->setPosition(0, 0, -900);
 			  engine->gameMgr->cameraNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_LOCAL);
