@@ -30,16 +30,6 @@ GfxMgr::GfxMgr(Engine *engine): Mgr(engine) {
 	mSceneMgr = 0;
 	mCamera = 0;
 	//oceanSurface(Ogre::Vector3::UNIT_Y, 0);
-}
-
-GfxMgr::~GfxMgr() {
-
-	Ogre::WindowEventUtilities::removeWindowEventListener(mWindow, this);
-	windowClosed(mWindow);
-	delete mRoot;
-}
-
-void GfxMgr::Init(){
 #ifdef _DEBUG
   mResourcesCfg = "resources_d.cfg";
   mPluginsCfg = "plugins_d.cfg";
@@ -75,9 +65,6 @@ void GfxMgr::Init(){
 
   mWindow = mRoot->initialise(true, "CS381 Game Engine Version 1.0");
 
-  Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-  Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-
   mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 
   mCamera = mSceneMgr->createCamera("MainCam");
@@ -94,6 +81,19 @@ void GfxMgr::Init(){
 
   //-----------------------------------------------------------------------
   Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
+}
+
+GfxMgr::~GfxMgr() {
+
+	Ogre::WindowEventUtilities::removeWindowEventListener(mWindow, this);
+	windowClosed(mWindow);
+	delete mRoot;
+}
+
+void GfxMgr::Init(){
+
+  Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+  Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
   //mRoot->addFrameListener(this);
   //mRoot->startRendering();
 

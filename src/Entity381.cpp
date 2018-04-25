@@ -9,7 +9,6 @@
 
 #include<Entity381.h>
 #include<Physics2D.h>
-#include<UnitAI.h>
 
 std::string IntToString(int x){
 	char tmp[10000];
@@ -41,10 +40,6 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
 	Renderable * renderable = new Renderable(this);
 	aspects.push_back((Aspect*)renderable);
 
-	//add AI
-	UnitAI* nodeAI = new UnitAI(this);
-	aspects.push_back((Aspect*)nodeAI);
-
 	this->acceleration = 0;
 	this->desiredHeading = this->heading = 0;
 	this->turnRate = 0;
@@ -55,11 +50,6 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
 
 Entity381::~Entity381(){
 
-}
-
-Aspect* Entity381::getAI()
-{
-	return aspects.at(2);
 }
 
 void Entity381::Init(){

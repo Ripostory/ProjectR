@@ -1,7 +1,7 @@
 src/FlyingEntity381.o: ../src/FlyingEntity381.cpp \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics3D.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/FlyingEntity381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h \
+ /home/rquijada/workspace/ProjectR/inc/Physics3D.h \
+ /home/rquijada/workspace/ProjectR/inc/FlyingEntity381.h \
+ /home/rquijada/workspace/ProjectR/inc/Entity381.h \
  /usr/local/include/OGRE/OgreEntity.h \
  /usr/local/include/OGRE/OgrePrerequisites.h \
  /usr/local/include/OGRE/OgrePlatform.h \
@@ -124,16 +124,16 @@ src/FlyingEntity381.o: ../src/FlyingEntity381.cpp \
  /usr/local/include/OGRE/OgreConfigOptionMap.h \
  /usr/local/include/OGRE/OgreNameGenerator.h \
  /usr/local/include/OGRE/OgreVector3.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics2D.h
+ /home/rquijada/workspace/ProjectR/inc/Aspect.h \
+ /home/rquijada/workspace/ProjectR/inc/Types381.h \
+ /home/rquijada/workspace/ProjectR/inc/Engine.h \
+ /home/rquijada/workspace/ProjectR/inc/Physics2D.h
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics3D.h:
+/home/rquijada/workspace/ProjectR/inc/Physics3D.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/FlyingEntity381.h:
+/home/rquijada/workspace/ProjectR/inc/FlyingEntity381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h:
+/home/rquijada/workspace/ProjectR/inc/Entity381.h:
 
 /usr/local/include/OGRE/OgreEntity.h:
 
@@ -383,10 +383,10 @@ src/FlyingEntity381.o: ../src/FlyingEntity381.cpp \
 
 /usr/local/include/OGRE/OgreVector3.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h:
+/home/rquijada/workspace/ProjectR/inc/Aspect.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h:
+/home/rquijada/workspace/ProjectR/inc/Types381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h:
+/home/rquijada/workspace/ProjectR/inc/Engine.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics2D.h:
+/home/rquijada/workspace/ProjectR/inc/Physics2D.h:

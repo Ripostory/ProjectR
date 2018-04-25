@@ -1,5 +1,5 @@
 src/Entity381.o: ../src/Entity381.cpp \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/GfxMgr.h \
  /usr/local/include/OGRE/OgreRoot.h \
  /usr/local/include/OGRE/OgrePrerequisites.h \
  /usr/local/include/OGRE/OgrePlatform.h \
@@ -121,8 +121,8 @@ src/Entity381.o: ../src/Entity381.cpp \
  /usr/local/include/OGRE/OgreLodStrategy.h \
  /usr/local/include/OGRE/OgreWorkQueue.h \
  /usr/local/include/OGRE/OgreWindowEventUtilities.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h \
+ /home/rquijada/workspace/ProjectR/inc/Mgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Entity381.h \
  /usr/local/include/OGRE/OgreEntity.h \
  /usr/local/include/OGRE/OgreHardwareBufferManager.h \
  /usr/local/include/OGRE/OgreHardwareCounterBuffer.h \
@@ -130,16 +130,12 @@ src/Entity381.o: ../src/Entity381.cpp \
  /usr/local/include/OGRE/OgreRenderToVertexBuffer.h \
  /usr/local/include/OGRE/OgreSceneManager.h \
  /usr/local/include/OGRE/OgreVector3.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics2D.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/UnitAI.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Command.h
+ /home/rquijada/workspace/ProjectR/inc/Aspect.h \
+ /home/rquijada/workspace/ProjectR/inc/Types381.h \
+ /home/rquijada/workspace/ProjectR/inc/Engine.h \
+ /home/rquijada/workspace/ProjectR/inc/Physics2D.h
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h:
+/home/rquijada/workspace/ProjectR/inc/GfxMgr.h:
 
 /usr/local/include/OGRE/OgreRoot.h:
 
@@ -389,9 +385,9 @@ src/Entity381.o: ../src/Entity381.cpp \
 
 /usr/local/include/OGRE/OgreWindowEventUtilities.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h:
+/home/rquijada/workspace/ProjectR/inc/Mgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h:
+/home/rquijada/workspace/ProjectR/inc/Entity381.h:
 
 /usr/local/include/OGRE/OgreEntity.h:
 
@@ -407,18 +403,10 @@ src/Entity381.o: ../src/Entity381.cpp \
 
 /usr/local/include/OGRE/OgreVector3.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h:
+/home/rquijada/workspace/ProjectR/inc/Aspect.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h:
+/home/rquijada/workspace/ProjectR/inc/Types381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h:
+/home/rquijada/workspace/ProjectR/inc/Engine.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics2D.h:
-
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/UnitAI.h:
-
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h:
-
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h:
-
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Command.h:
+/home/rquijada/workspace/ProjectR/inc/Physics2D.h:

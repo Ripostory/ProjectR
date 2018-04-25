@@ -54,9 +54,7 @@ public:
 	void UpdateVelocityAndSelection(float dt);
 
 	void HandleMouseSelection(const OIS::MouseEvent& me);
-	void HandleRightSelection(const OIS::MouseEvent& me);
 	float selectionDistanceSquaredThreshold;
-	float multiplier;
 
 
 };

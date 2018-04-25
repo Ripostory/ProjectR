@@ -6,6 +6,7 @@
 #include <OgreVector3.h>
 #include <Aspect.h>
 #include <Types381.h>
+
 #include <Engine.h>
 
 class Entity381
@@ -13,7 +14,6 @@ class Entity381
 public:
   Entity381(Engine *engine, Ogre::Vector3 pos, int identity);
   virtual ~Entity381();
-  Aspect* getAI();
 
   Engine *engine;
 

@@ -1,6 +1,6 @@
 src/Physics2D.o: ../src/Physics2D.cpp \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics2D.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h \
+ /home/rquijada/workspace/ProjectR/inc/Physics2D.h \
+ /home/rquijada/workspace/ProjectR/inc/Aspect.h \
  /usr/local/include/OGRE/OgreVector3.h \
  /usr/local/include/OGRE/OgrePrerequisites.h \
  /usr/local/include/OGRE/OgrePlatform.h \
@@ -15,7 +15,7 @@ src/Physics2D.o: ../src/Physics2D.cpp \
  /usr/local/include/OGRE/OgreMemoryNedPooling.h \
  /usr/local/include/OGRE/OgreMath.h \
  /usr/local/include/OGRE/OgreQuaternion.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h \
+ /home/rquijada/workspace/ProjectR/inc/Entity381.h \
  /usr/local/include/OGRE/OgreEntity.h \
  /usr/local/include/OGRE/OgreCommon.h \
  /usr/local/include/OGRE/OgreString.h \
@@ -125,13 +125,13 @@ src/Physics2D.o: ../src/Physics2D.cpp \
  /usr/local/include/OGRE/OgreFrameListener.h \
  /usr/local/include/OGRE/OgreConfigOptionMap.h \
  /usr/local/include/OGRE/OgreNameGenerator.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Utils.h
+ /home/rquijada/workspace/ProjectR/inc/Types381.h \
+ /home/rquijada/workspace/ProjectR/inc/Engine.h \
+ /home/rquijada/workspace/ProjectR/inc/Utils.h
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Physics2D.h:
+/home/rquijada/workspace/ProjectR/inc/Physics2D.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h:
+/home/rquijada/workspace/ProjectR/inc/Aspect.h:
 
 /usr/local/include/OGRE/OgreVector3.h:
 
@@ -161,7 +161,7 @@ src/Physics2D.o: ../src/Physics2D.cpp \
 
 /usr/local/include/OGRE/OgreQuaternion.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h:
+/home/rquijada/workspace/ProjectR/inc/Entity381.h:
 
 /usr/local/include/OGRE/OgreEntity.h:
 
@@ -383,8 +383,8 @@ src/Physics2D.o: ../src/Physics2D.cpp \
 
 /usr/local/include/OGRE/OgreNameGenerator.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h:
+/home/rquijada/workspace/ProjectR/inc/Types381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h:
+/home/rquijada/workspace/ProjectR/inc/Engine.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Utils.h:
+/home/rquijada/workspace/ProjectR/inc/Utils.h:

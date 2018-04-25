@@ -10,11 +10,12 @@
 #include <GameMgr.h>
 #include <GfxMgr.h>
 #include <InputMgr.h>
+#include <UiMgr.h>
 
 Engine::Engine() {
+	gfxMgr    = 0;
 	entityMgr = 0; //null
 	gameMgr   = 0;
-	gfxMgr    = 0;
 	inputMgr  = 0;
 
 	keepRunning = true;
@@ -26,22 +27,25 @@ Engine::~Engine() {
 }
 
 void Engine::Init(){
+	gfxMgr    = new GfxMgr(this);
 	entityMgr = new EntityMgr(this);
 	gameMgr   = new GameMgr(this);
-	gfxMgr    = new GfxMgr(this);
 	inputMgr  = new InputMgr(this);
+	uiMgr 	  = new UiMgr(this);
 
 	//--------------------------------------------------------------
-	entityMgr->Init();
 	gfxMgr->Init();
+	entityMgr->Init();
 	inputMgr->Init(); // must initialize AFTER gfx manager
 	gameMgr->Init();
+	uiMgr->Init();
 
 	//--------------------------------------------------------------
-	entityMgr->LoadLevel();
 	gfxMgr->LoadLevel();
+	entityMgr->LoadLevel();
 	inputMgr->LoadLevel();
 	gameMgr->LoadLevel();
+	uiMgr->LoadLevel();
 }
 
 
@@ -50,6 +54,7 @@ void Engine::TickAll(float dt){
 	inputMgr->Tick(dt);
 	entityMgr->Tick(dt);
 	gameMgr->Tick(dt);
+	uiMgr->Tick(dt);
 }
 
 

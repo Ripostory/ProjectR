@@ -1,6 +1,6 @@
 src/InputMgr.o: ../src/InputMgr.cpp \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Engine.h \
+ /home/rquijada/workspace/ProjectR/inc/GfxMgr.h \
  /usr/local/include/OGRE/OgreRoot.h \
  /usr/local/include/OGRE/OgrePrerequisites.h \
  /usr/local/include/OGRE/OgrePlatform.h \
@@ -122,13 +122,13 @@ src/InputMgr.o: ../src/InputMgr.cpp \
  /usr/local/include/OGRE/OgreLodStrategy.h \
  /usr/local/include/OGRE/OgreWorkQueue.h \
  /usr/local/include/OGRE/OgreWindowEventUtilities.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/InputMgr.h \
- /usr/include/OIS/OISEvents.h /usr/include/OIS/OISPrereqs.h \
- /usr/include/OIS/OISConfig.h /usr/include/OIS/OISInputManager.h \
- /usr/include/OIS/OISKeyboard.h /usr/include/OIS/OISObject.h \
- /usr/include/OIS/OISInterface.h /usr/include/OIS/OISEvents.h \
- /usr/include/OIS/OISMouse.h /usr/local/include/OGRE/SdkTrays.h \
+ /home/rquijada/workspace/ProjectR/inc/Mgr.h \
+ /home/rquijada/workspace/ProjectR/inc/InputMgr.h \
+ /usr/include/ois/OISEvents.h /usr/include/ois/OISPrereqs.h \
+ /usr/include/ois/OISConfig.h /usr/include/ois/OISInputManager.h \
+ /usr/include/ois/OISKeyboard.h /usr/include/ois/OISObject.h \
+ /usr/include/ois/OISInterface.h /usr/include/ois/OISEvents.h \
+ /usr/include/ois/OISMouse.h /usr/local/include/OGRE/SdkTrays.h \
  /usr/local/include/OGRE/Ogre.h \
  /usr/local/include/OGRE/OgreArchiveManager.h \
  /usr/local/include/OGRE/OgreBillboardChain.h \
@@ -223,31 +223,28 @@ src/InputMgr.o: ../src/InputMgr.cpp \
  /usr/local/include/OGRE/Overlay/OgreTextAreaOverlayElement.h \
  /usr/local/include/OGRE/Overlay/OgreOverlayElementFactory.h \
  /usr/local/include/OGRE/OgreRenderQueueListener.h \
- /usr/local/include/OGRE/InputContext.h /usr/include/OIS/OIS.h \
- /usr/include/OIS/OISMouse.h /usr/include/OIS/OISKeyboard.h \
- /usr/include/OIS/OISJoyStick.h /usr/include/OIS/OISMultiTouch.h \
- /usr/include/OIS/OISInputManager.h /usr/include/OIS/OISFactoryCreator.h \
- /usr/include/OIS/OISException.h /usr/include/OIS/OISEffect.h \
- /usr/include/OIS/OISForceFeedback.h \
+ /usr/local/include/OGRE/InputContext.h /usr/include/ois/OIS.h \
+ /usr/include/ois/OISMouse.h /usr/include/ois/OISKeyboard.h \
+ /usr/include/ois/OISJoyStick.h /usr/include/ois/OISMultiTouch.h \
+ /usr/include/ois/OISInputManager.h /usr/include/ois/OISFactoryCreator.h \
+ /usr/include/ois/OISException.h /usr/include/ois/OISEffect.h \
+ /usr/include/ois/OISForceFeedback.h \
  /usr/local/include/OGRE/SdkCameraMan.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/EntityMgr.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h \
+ /home/rquijada/workspace/ProjectR/inc/EntityMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Entity381.h \
  /usr/local/include/OGRE/OgreEntity.h \
  /usr/local/include/OGRE/OgreSceneManager.h \
  /usr/local/include/OGRE/OgreVector3.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/FlyingEntity381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GameMgr.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/UnitAI.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Command.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Utils.h
+ /home/rquijada/workspace/ProjectR/inc/Aspect.h \
+ /home/rquijada/workspace/ProjectR/inc/Types381.h \
+ /home/rquijada/workspace/ProjectR/inc/FlyingEntity381.h \
+ /home/rquijada/workspace/ProjectR/inc/GameMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/UiMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Utils.h
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h:
+/home/rquijada/workspace/ProjectR/inc/Engine.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h:
+/home/rquijada/workspace/ProjectR/inc/GfxMgr.h:
 
 /usr/local/include/OGRE/OgreRoot.h:
 
@@ -497,27 +494,27 @@ src/InputMgr.o: ../src/InputMgr.cpp \
 
 /usr/local/include/OGRE/OgreWindowEventUtilities.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h:
+/home/rquijada/workspace/ProjectR/inc/Mgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/InputMgr.h:
+/home/rquijada/workspace/ProjectR/inc/InputMgr.h:
 
-/usr/include/OIS/OISEvents.h:
+/usr/include/ois/OISEvents.h:
 
-/usr/include/OIS/OISPrereqs.h:
+/usr/include/ois/OISPrereqs.h:
 
-/usr/include/OIS/OISConfig.h:
+/usr/include/ois/OISConfig.h:
 
-/usr/include/OIS/OISInputManager.h:
+/usr/include/ois/OISInputManager.h:
 
-/usr/include/OIS/OISKeyboard.h:
+/usr/include/ois/OISKeyboard.h:
 
-/usr/include/OIS/OISObject.h:
+/usr/include/ois/OISObject.h:
 
-/usr/include/OIS/OISInterface.h:
+/usr/include/ois/OISInterface.h:
 
-/usr/include/OIS/OISEvents.h:
+/usr/include/ois/OISEvents.h:
 
-/usr/include/OIS/OISMouse.h:
+/usr/include/ois/OISMouse.h:
 
 /usr/local/include/OGRE/SdkTrays.h:
 
@@ -711,31 +708,31 @@ src/InputMgr.o: ../src/InputMgr.cpp \
 
 /usr/local/include/OGRE/InputContext.h:
 
-/usr/include/OIS/OIS.h:
+/usr/include/ois/OIS.h:
 
-/usr/include/OIS/OISMouse.h:
+/usr/include/ois/OISMouse.h:
 
-/usr/include/OIS/OISKeyboard.h:
+/usr/include/ois/OISKeyboard.h:
 
-/usr/include/OIS/OISJoyStick.h:
+/usr/include/ois/OISJoyStick.h:
 
-/usr/include/OIS/OISMultiTouch.h:
+/usr/include/ois/OISMultiTouch.h:
 
-/usr/include/OIS/OISInputManager.h:
+/usr/include/ois/OISInputManager.h:
 
-/usr/include/OIS/OISFactoryCreator.h:
+/usr/include/ois/OISFactoryCreator.h:
 
-/usr/include/OIS/OISException.h:
+/usr/include/ois/OISException.h:
 
-/usr/include/OIS/OISEffect.h:
+/usr/include/ois/OISEffect.h:
 
-/usr/include/OIS/OISForceFeedback.h:
+/usr/include/ois/OISForceFeedback.h:
 
 /usr/local/include/OGRE/SdkCameraMan.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/EntityMgr.h:
+/home/rquijada/workspace/ProjectR/inc/EntityMgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h:
+/home/rquijada/workspace/ProjectR/inc/Entity381.h:
 
 /usr/local/include/OGRE/OgreEntity.h:
 
@@ -743,20 +740,14 @@ src/InputMgr.o: ../src/InputMgr.cpp \
 
 /usr/local/include/OGRE/OgreVector3.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h:
+/home/rquijada/workspace/ProjectR/inc/Aspect.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h:
+/home/rquijada/workspace/ProjectR/inc/Types381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/FlyingEntity381.h:
+/home/rquijada/workspace/ProjectR/inc/FlyingEntity381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GameMgr.h:
+/home/rquijada/workspace/ProjectR/inc/GameMgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/UnitAI.h:
+/home/rquijada/workspace/ProjectR/inc/UiMgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h:
-
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h:
-
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Command.h:
-
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Utils.h:
+/home/rquijada/workspace/ProjectR/inc/Utils.h:

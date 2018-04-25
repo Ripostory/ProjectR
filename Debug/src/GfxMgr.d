@@ -128,8 +128,8 @@ src/GfxMgr.o: ../src/GfxMgr.cpp /usr/local/include/OGRE/OgreEntity.h \
  /usr/local/include/OGRE/OgreMeshManager.h \
  /usr/local/include/OGRE/OgrePatchMesh.h \
  /usr/local/include/OGRE/OgrePatchSurface.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Engine.h \
+ /home/rquijada/workspace/ProjectR/inc/GfxMgr.h \
  /usr/local/include/OGRE/OgreRoot.h \
  /usr/local/include/OGRE/OgreSceneManagerEnumerator.h \
  /usr/local/include/OGRE/OgreSceneManager.h \
@@ -137,7 +137,7 @@ src/GfxMgr.o: ../src/GfxMgr.cpp /usr/local/include/OGRE/OgreEntity.h \
  /usr/local/include/OGRE/OgreLodStrategy.h \
  /usr/local/include/OGRE/OgreWorkQueue.h \
  /usr/local/include/OGRE/OgreWindowEventUtilities.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h
+ /home/rquijada/workspace/ProjectR/inc/Mgr.h
 
 /usr/local/include/OGRE/OgreEntity.h:
 
@@ -403,9 +403,9 @@ src/GfxMgr.o: ../src/GfxMgr.cpp /usr/local/include/OGRE/OgreEntity.h \
 
 /usr/local/include/OGRE/OgrePatchSurface.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h:
+/home/rquijada/workspace/ProjectR/inc/Engine.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h:
+/home/rquijada/workspace/ProjectR/inc/GfxMgr.h:
 
 /usr/local/include/OGRE/OgreRoot.h:
 
@@ -421,4 +421,4 @@ src/GfxMgr.o: ../src/GfxMgr.cpp /usr/local/include/OGRE/OgreEntity.h \
 
 /usr/local/include/OGRE/OgreWindowEventUtilities.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h:
+/home/rquijada/workspace/ProjectR/inc/Mgr.h:

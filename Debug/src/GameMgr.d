@@ -1,8 +1,8 @@
 src/GameMgr.o: ../src/GameMgr.cpp \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/EntityMgr.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h \
+ /home/rquijada/workspace/ProjectR/inc/Engine.h \
+ /home/rquijada/workspace/ProjectR/inc/EntityMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Mgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Entity381.h \
  /usr/local/include/OGRE/OgreEntity.h \
  /usr/local/include/OGRE/OgrePrerequisites.h \
  /usr/local/include/OGRE/OgrePlatform.h \
@@ -125,11 +125,11 @@ src/GameMgr.o: ../src/GameMgr.cpp \
  /usr/local/include/OGRE/OgreConfigOptionMap.h \
  /usr/local/include/OGRE/OgreNameGenerator.h \
  /usr/local/include/OGRE/OgreVector3.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/FlyingEntity381.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GameMgr.h \
- /home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/Aspect.h \
+ /home/rquijada/workspace/ProjectR/inc/Types381.h \
+ /home/rquijada/workspace/ProjectR/inc/FlyingEntity381.h \
+ /home/rquijada/workspace/ProjectR/inc/GameMgr.h \
+ /home/rquijada/workspace/ProjectR/inc/GfxMgr.h \
  /usr/local/include/OGRE/OgreRoot.h \
  /usr/local/include/OGRE/OgreSceneManagerEnumerator.h \
  /usr/local/include/OGRE/OgreSceneManager.h \
@@ -144,13 +144,13 @@ src/GameMgr.o: ../src/GameMgr.cpp \
  /usr/local/include/OGRE/OgreIteratorWrappers.h \
  /usr/local/include/OGRE/OgreMatrix4.h
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Engine.h:
+/home/rquijada/workspace/ProjectR/inc/Engine.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/EntityMgr.h:
+/home/rquijada/workspace/ProjectR/inc/EntityMgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Mgr.h:
+/home/rquijada/workspace/ProjectR/inc/Mgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Entity381.h:
+/home/rquijada/workspace/ProjectR/inc/Entity381.h:
 
 /usr/local/include/OGRE/OgreEntity.h:
 
@@ -400,15 +400,15 @@ src/GameMgr.o: ../src/GameMgr.cpp \
 
 /usr/local/include/OGRE/OgreVector3.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Aspect.h:
+/home/rquijada/workspace/ProjectR/inc/Aspect.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/Types381.h:
+/home/rquijada/workspace/ProjectR/inc/Types381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/FlyingEntity381.h:
+/home/rquijada/workspace/ProjectR/inc/FlyingEntity381.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GameMgr.h:
+/home/rquijada/workspace/ProjectR/inc/GameMgr.h:
 
-/home/rquijada/workspace/Quijada_Ogre_Assignment6/inc/GfxMgr.h:
+/home/rquijada/workspace/ProjectR/inc/GfxMgr.h:
 
 /usr/local/include/OGRE/OgreRoot.h:
 
