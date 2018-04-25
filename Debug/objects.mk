@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lOgreMain -lboost_system -lOgreOverlay -lOIS
+LIBS := -lOgreMain -lLinearMath -lBulletCollision -lBulletSoftBody -lBulletDynamics -lboost_system -lOgreOverlay -lOIS
 

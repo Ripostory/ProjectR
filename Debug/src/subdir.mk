@@ -15,6 +15,7 @@ CPP_SRCS += \
 ../src/Mgr.cpp \
 ../src/Physics2D.cpp \
 ../src/Physics3D.cpp \
+../src/PhysicsMgr.cpp \
 ../src/UiMgr.cpp \
 ../src/Utils.cpp \
 ../src/main.cpp 
@@ -31,6 +32,7 @@ OBJS += \
 ./src/Mgr.o \
 ./src/Physics2D.o \
 ./src/Physics3D.o \
+./src/PhysicsMgr.o \
 ./src/UiMgr.o \
 ./src/Utils.o \
 ./src/main.o 
@@ -47,6 +49,7 @@ CPP_DEPS += \
 ./src/Mgr.d \
 ./src/Physics2D.d \
 ./src/Physics3D.d \
+./src/PhysicsMgr.d \
 ./src/UiMgr.d \
 ./src/Utils.d \
 ./src/main.d 
@@ -56,7 +59,7 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/home/rquijada/workspace/ProjectR/inc" -I/usr/local/include/OGRE -I/usr/local/include/OGRE/Overlay -I/usr/include/ois -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"/home/rquijada/workspace/ProjectR/inc" -I/usr/include/bullet -I/usr/local/include/OGRE -I/usr/local/include/OGRE/Overlay -I/usr/include/ois -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
