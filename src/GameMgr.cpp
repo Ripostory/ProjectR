@@ -39,6 +39,12 @@ void GameMgr::LoadLevel(){
 	  Ogre::Light* light = engine->gfxMgr->mSceneMgr->createLight("MainLight");
 	  light->setPosition(20.0, 80.0, 50.0);
 
+	  //room
+	    Ogre::Entity* ogreEntity3 = engine->gfxMgr->mSceneMgr->createEntity("Room.mesh");
+	    Ogre::SceneNode* ogreNode3 = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode();
+	    ogreNode3->setPosition(0, 0, 0);
+	    ogreNode3->attachObject(ogreEntity3);
+
 	  // A node to attach the camera to so we can move the camera node instead of the camera.
 	  cameraNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	  cameraNode->setPosition(0, 10, 10);
@@ -46,6 +52,11 @@ void GameMgr::LoadLevel(){
 
 	  engine->gfxMgr->MakeSky();
 	  engine->physicsMgr->makePlane();
+<<<<<<< HEAD
+=======
+	  //engine->gfxMgr->MakeGround();
+	  MakeEntities();
+>>>>>>> 00709473bc8d412fff1f5bd1c3ebd20152db999c
 }
 
 
