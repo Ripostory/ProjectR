@@ -38,7 +38,7 @@ void PhysicsMgr::LoadLevel()
 void PhysicsMgr::Tick(float dt)
 {
     //Update the physics
-    physWorld->stepSimulation((float) dt, 30);
+    physWorld->stepSimulation((float) dt*1.5, 60);
 		physWorld->performDiscreteCollisionDetection();
 
 
@@ -83,7 +83,7 @@ void PhysicsMgr::makePlane()
 {
 	btRigidBody *planeCollider;
 	btCollisionShape* groundShape =
-			new btStaticPlaneShape(btVector3(0, 1, 0), -10);
+			new btStaticPlaneShape(btVector3(0, 1, 0), -1600);
 	btDefaultMotionState* groundMotionState =
 	        new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
 	btRigidBody::btRigidBodyConstructionInfo
