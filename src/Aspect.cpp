@@ -13,7 +13,7 @@ Aspect::Aspect(Entity381 *ent){
 	entity = ent;
 }
 
-Aspect::~Aspect(){
+Aspect::~Aspect() {
 
 }
 

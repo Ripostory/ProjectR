@@ -7,6 +7,14 @@
 
 #include "PhysicsMgr.h"
 
+PhysicsMgr::PhysicsMgr(Engine *ref) : Mgr(ref)
+{
+}
+
+PhysicsMgr::~PhysicsMgr()
+{
+}
+
 void PhysicsMgr::Init()
 {
 	  //initialize physics engine
@@ -64,5 +72,9 @@ Ogre::Vector3 PhysicsMgr::getGravity()
 	return gravity;
 }
 
+void PhysicsMgr::setGravity(Ogre::Vector3 ref)
+{
+	gravity = ref;
+}
 
 

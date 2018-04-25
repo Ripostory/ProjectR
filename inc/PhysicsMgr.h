@@ -17,12 +17,15 @@
 class PhysicsMgr : public Mgr
 {
 public:
+	PhysicsMgr(Engine *ref);
+	~PhysicsMgr();
 	virtual void Init();
 	virtual void LoadLevel();
 	virtual void Tick(float dt);
 	virtual void Stop();
 
 	Ogre::Vector3 getGravity();
+	void setGravity(Ogre::Vector3);
 private:
 	Ogre::Vector3 gravity;
 
