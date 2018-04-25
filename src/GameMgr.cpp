@@ -50,26 +50,13 @@ void GameMgr::LoadLevel(){
 	  cameraNode->setPosition(0, 200, 500);
 	  cameraNode->attachObject(engine->gfxMgr->mCamera);
 
-	  engine->gfxMgr->MakeGround();
 	  engine->gfxMgr->MakeSky();
 	  MakeEntities();
 }
 
 void GameMgr::MakeEntities(){
-	Ogre::Vector3 pos = Ogre::Vector3(-1000, 0, 0);
+	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
-	pos.x += 500;
-	engine->entityMgr->CreateEntityOfTypeAtPosition(CarrierType, pos);
-	pos.x += 500;
-	engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType, pos);
-	pos.x += 500;
-	engine->entityMgr->CreateEntityOfTypeAtPosition(FrigateType, pos);
-	pos.x += 500;
-	engine->entityMgr->CreateEntityOfTypeAtPosition(AlienType, pos);
-
-	pos.x = 0;
-	engine->entityMgr->CreateEntityOfTypeAtPosition(BansheeType, pos);
-
 	engine->entityMgr->SelectNextEntity(); //sets selection
 }
 
