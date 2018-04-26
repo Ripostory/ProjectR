@@ -79,6 +79,7 @@ GfxMgr::GfxMgr(Engine *engine): Mgr(engine) {
     Ogre::Real(vp->getActualWidth()) /
     Ogre::Real(vp->getActualHeight()));
 
+
   //-----------------------------------------------------------------------
   Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 }

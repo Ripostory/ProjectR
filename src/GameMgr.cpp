@@ -52,13 +52,9 @@ void GameMgr::LoadLevel(){
 
 	  engine->gfxMgr->MakeSky();
 	  engine->physicsMgr->makePlane();
-<<<<<<< HEAD
-=======
 	  //engine->gfxMgr->MakeGround();
 	  MakeEntities();
->>>>>>> 00709473bc8d412fff1f5bd1c3ebd20152db999c
 }
-
 
 
 void GameMgr::MakeEntities(){

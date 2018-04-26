@@ -28,6 +28,7 @@ void PhysicsMgr::Init()
 	  physWorld = new btDiscreteDynamicsWorld(physDispatcher,
 			  overlapPairCache, solver, collConfig);
 	  physWorld->setGravity(btVector3(0, -9.8, 0));
+
 }
 
 void PhysicsMgr::LoadLevel()

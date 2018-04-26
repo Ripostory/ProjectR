@@ -25,10 +25,11 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.706054069" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1677509015" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/include/bullet"/>
 									<listOptionValue builtIn="false" value="/usr/local/include/OGRE"/>
 									<listOptionValue builtIn="false" value="/usr/local/include/OGRE/Overlay"/>
 									<listOptionValue builtIn="false" value="/usr/include/ois"/>
+									<listOptionValue builtIn="false" value="/usr/include/bullet"/>
+									<listOptionValue builtIn="false" value="/usr/include/OIS"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.951131133" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -41,10 +42,9 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1465074592" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.706766776" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.paths.176792470" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" useByScannerDiscovery="false" valueType="libPaths">
-									<listOptionValue builtIn="false" value="/usr/local/lib/"/>
 									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu"/>
-									<listOptionValue builtIn="false" value="/usr/local/lib/"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib/OGRE"/>
+									<listOptionValue builtIn="false" value="/usr/local/lib"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.1050499504" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs">
 									<listOptionValue builtIn="false" value="OgreMain"/>
