@@ -37,6 +37,7 @@ public:
 	Ogre::Vector3 getGravity();
 	void setGravity(Ogre::Vector3);
 	void makePlane();
+	Ogre::Vector3 baseGravity;
 	btDiscreteDynamicsWorld *physWorld;
 private:
 	Ogre::Vector3 gravity;

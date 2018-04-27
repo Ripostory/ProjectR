@@ -9,7 +9,8 @@
 
 PhysicsMgr::PhysicsMgr(Engine *ref) : Mgr(ref)
 {
-	gravity = Ogre::Vector3(0, -9.8, 0);
+	baseGravity = Ogre::Vector3(0, -9.8*15, 0);
+	gravity = baseGravity;
 }
 
 PhysicsMgr::~PhysicsMgr()
@@ -27,7 +28,7 @@ void PhysicsMgr::Init()
 
 	  physWorld = new btDiscreteDynamicsWorld(physDispatcher,
 			  overlapPairCache, solver, collConfig);
-	  physWorld->setGravity(btVector3(0, -98, 0));
+	  physWorld->setGravity(btVector3(gravity.x, gravity.y, gravity.z));
 
 }
 
@@ -39,7 +40,7 @@ void PhysicsMgr::LoadLevel()
 void PhysicsMgr::Tick(float dt)
 {
     //Update the physics
-    physWorld->stepSimulation((float) dt, 15);
+    physWorld->stepSimulation(dt, 15);
 		physWorld->performDiscreteCollisionDetection();
 /*
     int numManifolds = physWorld->getDispatcher()->getNumManifolds();
@@ -84,7 +85,7 @@ void PhysicsMgr::makePlane()
 {
 	btRigidBody *planeCollider;
 	btCollisionShape* groundShape =
-			new btStaticPlaneShape(btVector3(0, 1, 0), -10);
+			new btStaticPlaneShape(btVector3(0, 1, 0), -60);
 	btDefaultMotionState* groundMotionState =
 	        new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
 	btRigidBody::btRigidBodyConstructionInfo

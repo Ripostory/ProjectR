@@ -60,7 +60,7 @@ void GameMgr::LoadLevel(){
 	  cameraNode->attachObject(engine->gfxMgr->mCamera);
 
 	  //make camera offset
-	  engine->gfxMgr->mCamera->setPosition(2400 ,2400,2400);
+	  engine->gfxMgr->mCamera->setPosition(800 ,800,800);
 	  engine->gfxMgr->mCamera->lookAt(0,0,0);
 
 	  //engine->gfxMgr->MakeSky();
@@ -106,7 +106,7 @@ void GameMgr::turnCamZ(bool isPositive)
 
 void GameMgr::rotateCam(float degrees, Ogre::Vector3 axis)
 {
-	Ogre::Vector3 dir = Ogre::Vector3(0, -98, 0);
+	Ogre::Vector3 dir = engine->physicsMgr->baseGravity;
 	Ogre::Quaternion base(cameraNode->getOrientation());
 	Ogre::Quaternion offset(Ogre::Degree(degrees), axis);
 	//set base orientation only if last animation finished

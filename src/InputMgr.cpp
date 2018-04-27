@@ -160,6 +160,14 @@ bool InputMgr::keyPressed(const OIS::KeyEvent& ke){
     {
     	engine->gameMgr->turnCamZ(false);
     }
+
+    if (mKeyboard->isKeyDown(OIS::KC_F))
+    {
+    	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
+    	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
+    }
+
+
 	return true;
 }
 

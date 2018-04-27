@@ -16,7 +16,7 @@ Physics3D::Physics3D(Entity381 * ent): Aspect(ent) {
 	isStatic = false;
 	physics = NULL;
 	shape = new btSphereShape(50);
-	mass = 100.0f;
+	mass = 10.0f;
 	friction = 0.3f;
 	restitution = 0.2;
 }
@@ -46,7 +46,7 @@ void Physics3D::Tick(float dt){
 		  //TODO add more functionality
 		  entity->position = btToOgre(transform.getOrigin());
 		  //get quaternion from transform
-		  entity->sceneNode->rotate(Ogre::Quaternion(btToOgre(transform.getBasis())), Ogre::Node::TS_WORLD);
+		  entity->sceneNode->setOrientation(Ogre::Quaternion(btToOgre(transform.getBasis())));
 	  }
 }
 
@@ -124,7 +124,7 @@ void Physics3D::setCollisionMesh(int mesh)
 			for (int j = 0; j < data->vertexCount; j++)
 			{
 				vertexPos->baseVertexPointerToElement(vertices, (void **)&vertex);
-				btVector3 v1(vertex[0], vertex[0], vertex[0]);
+				btVector3 v1(vertex[0], vertex[1], vertex[2]);
 				meshShape->addPoint(v1, true);
 				vertices += vertexBuffer->getVertexSize();
 			}
