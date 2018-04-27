@@ -21,6 +21,8 @@
 
 GameMgr::GameMgr(Engine *engine): Mgr(engine) {
 	cameraNode = 0;
+	baseTime = 0;
+	animTime = 0.1;
 }
 
 GameMgr::~GameMgr() {
@@ -29,6 +31,13 @@ GameMgr::~GameMgr() {
 
 void GameMgr::Init(){
 
+}
+
+void GameMgr::Tick(float dt)
+{
+	//update animation timer
+	 if (baseTime <= 1.0f)
+		 baseTime += dt/animTime;
 }
 
 void GameMgr::LoadLevel(){
@@ -47,12 +56,15 @@ void GameMgr::LoadLevel(){
 
 	  // A node to attach the camera to so we can move the camera node instead of the camera.
 	  cameraNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode();
-	  cameraNode->setPosition(0, 10, 10);
+	  cameraNode->setPosition(0, 0, 0);
 	  cameraNode->attachObject(engine->gfxMgr->mCamera);
 
-	  engine->gfxMgr->MakeSky();
+	  //make camera offset
+	  engine->gfxMgr->mCamera->setPosition(2400 ,2400,2400);
+	  engine->gfxMgr->mCamera->lookAt(0,0,0);
+
+	  //engine->gfxMgr->MakeSky();
 	  engine->physicsMgr->makePlane();
-	  //engine->gfxMgr->MakeGround();
 	  MakeEntities();
 }
 
@@ -61,6 +73,56 @@ void GameMgr::MakeEntities(){
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
 	engine->entityMgr->SelectNextEntity(); //sets selection
+}
+
+
+void GameMgr::turnCamX(bool isPositive)
+{
+	Ogre::Vector3 axis(1,0,0);
+	if (isPositive)
+		rotateCam(90, axis);
+	else
+		rotateCam(-90, axis);
+}
+
+void GameMgr::turnCamY(bool isPositive)
+{
+	Ogre::Vector3 axis(0,1,0);
+	if (isPositive)
+		rotateCam(90, axis);
+	else
+		rotateCam(-90, axis);
+}
+
+void GameMgr::turnCamZ(bool isPositive)
+{
+	Ogre::Vector3 axis(0,0,1);
+	if (isPositive)
+		rotateCam(90, axis);
+	else
+		rotateCam(-90, axis);
+}
+
+
+void GameMgr::rotateCam(float degrees, Ogre::Vector3 axis)
+{
+	Ogre::Vector3 dir = Ogre::Vector3(0, -98, 0);
+	Ogre::Quaternion base(cameraNode->getOrientation());
+	Ogre::Quaternion offset(Ogre::Degree(degrees), axis);
+	//set base orientation only if last animation finished
+	if (baseTime < 1.0f)
+	{
+		baseOrientation = desiredOrientation;
+		desiredOrientation = baseOrientation * offset;
+	}
+	else
+	{
+		desiredOrientation = base * offset;
+		baseOrientation = base;
+	}
+	baseTime = 0;
+	Ogre::Vector3 nDir = desiredOrientation * dir;
+	engine->physicsMgr->setGravity(nDir);
 }
 
 

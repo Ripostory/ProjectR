@@ -17,6 +17,7 @@ public:
 
 	void Init();
 	void LoadLevel();
+	void Tick(float dt);
 
 	void MakeGround();
 	void MakeSky();
@@ -25,7 +26,15 @@ public:
 	Ogre::SceneNode *cameraNode;
 	Ogre::Vector3 desiredCameraPosition;
 	Ogre::Quaternion desiredOrientation;
-	Ogre::Real cameraSpeed, cameraTurnRate;
+	Ogre::Quaternion baseOrientation;
+	float baseTime;
+	float animTime;
+
+	void turnCamX(bool isPositive);
+	void turnCamY(bool isPositive);
+	void turnCamZ(bool isPositive);
+private:
+	void rotateCam(float degrees, Ogre::Vector3 dir);
 };
 
 #endif /* GAMEMGR_H_ */

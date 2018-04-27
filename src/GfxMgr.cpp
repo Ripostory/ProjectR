@@ -63,7 +63,7 @@ GfxMgr::GfxMgr(Engine *engine): Mgr(engine) {
   if (!(mRoot->restoreConfig() || mRoot->showConfigDialog()))
 	  std::cerr << "Could not find Config File and could not show Config Dialog" << std::endl;
 
-  mWindow = mRoot->initialise(true, "CS381 Game Engine Version 1.0");
+  mWindow = mRoot->initialise(true, "ProjectR");
 
   mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 
@@ -112,7 +112,7 @@ void GfxMgr::MakeGround(){
 	//Ogre::Plane oceanSurface(Ogre::Vector3::UNIT_Y, 0);
 	//oceanSurface = plane;
 	oceanSurface.normal = Ogre::Vector3::UNIT_Y;
-	oceanSurface.d = 0;
+	oceanSurface.d = -200;
 	Ogre::MeshManager::getSingleton().createPlane(
 	    "ocean",
 	    Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,

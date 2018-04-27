@@ -27,7 +27,7 @@ void PhysicsMgr::Init()
 
 	  physWorld = new btDiscreteDynamicsWorld(physDispatcher,
 			  overlapPairCache, solver, collConfig);
-	  physWorld->setGravity(btVector3(0, -9.8, 0));
+	  physWorld->setGravity(btVector3(0, -98, 0));
 
 }
 
@@ -39,10 +39,9 @@ void PhysicsMgr::LoadLevel()
 void PhysicsMgr::Tick(float dt)
 {
     //Update the physics
-    physWorld->stepSimulation((float) dt*1.5, 60);
+    physWorld->stepSimulation((float) dt, 15);
 		physWorld->performDiscreteCollisionDetection();
-
-
+/*
     int numManifolds = physWorld->getDispatcher()->getNumManifolds();
     for (int i = 0; i < numManifolds; i++)
     {
@@ -58,6 +57,7 @@ void PhysicsMgr::Tick(float dt)
 			//if (physObA != NULL && physObB != NULL)
 				//physObA -> OnCollisionDetected (physObB);
     }
+ */
 }
 
 void PhysicsMgr::Stop()
@@ -84,12 +84,13 @@ void PhysicsMgr::makePlane()
 {
 	btRigidBody *planeCollider;
 	btCollisionShape* groundShape =
-			new btStaticPlaneShape(btVector3(0, 1, 0), -1600);
+			new btStaticPlaneShape(btVector3(0, 1, 0), -10);
 	btDefaultMotionState* groundMotionState =
 	        new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
 	btRigidBody::btRigidBodyConstructionInfo
 	        groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
 	groundRigidBodyCI.m_restitution = 0.5f;
+	groundRigidBodyCI.m_friction = 0.1f;
 
 	//add collider
 	planeCollider = new btRigidBody(groundRigidBodyCI);

@@ -58,6 +58,9 @@ void Entity381::Init(){
 	ogreEntity = engine->gfxMgr->mSceneMgr->createEntity(meshfilename);
 	sceneNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode(position);
 	sceneNode->attachObject(ogreEntity);
+	Physics3D *phys = (Physics3D*)aspects[0];
+	phys->setCollisionMesh(PHYS_HULL);
+	phys->initPhysics();
 }
 
 void Entity381::Tick(float dt){

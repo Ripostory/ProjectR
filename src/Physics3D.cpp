@@ -10,15 +10,15 @@
 #include <Physics3D.h>
 #include <Entity381.h>
 #include <Utils.h>
+#include <OgreSubMesh.h>
 
 Physics3D::Physics3D(Entity381 * ent): Aspect(ent) {
 	isStatic = false;
 	physics = NULL;
-	shape = new btSphereShape(1);
+	shape = new btSphereShape(50);
 	mass = 100.0f;
 	friction = 0.3f;
 	restitution = 0.2;
-	initPhysics();
 }
 
 Physics3D::~Physics3D() {
@@ -30,7 +30,6 @@ Physics3D::~Physics3D() {
 
 	if (shape != NULL)
 	{
-		//TODO check
 		//delete shape;
 		shape = NULL;
 	}
@@ -49,11 +48,6 @@ void Physics3D::Tick(float dt){
 		  //get quaternion from transform
 		  entity->sceneNode->rotate(Ogre::Quaternion(btToOgre(transform.getBasis())), Ogre::Node::TS_WORLD);
 	  }
-}
-
-void setCollisionMesh(int)
-{
-	//TODO implement
 }
 
 void Physics3D::setCollisionMesh(int box, Ogre::Vector3 size)
@@ -107,6 +101,73 @@ void Physics3D::setCollisionMesh(int capCylCone, float radius, float height)
 	}
 }
 
+void Physics3D::setCollisionMesh(int mesh)
+{
+	if (mesh == PHYS_HULL)
+	{
+		//load in collision mesh
+		Ogre::Mesh *model = entity->ogreEntity->getMesh().getPointer();
+		btConvexHullShape *meshShape = new btConvexHullShape();
+
+		//for each submesh
+		for (int i = 1; i < model->getNumSubMeshes(); i++)
+		{
+			Ogre::SubMesh *submesh = model->getSubMesh(i);
+			Ogre::VertexData *data = submesh->vertexData;
+			const Ogre::VertexElement *vertexPos =
+					data->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+			Ogre::HardwareVertexBufferSharedPtr vertexBuffer =
+					data->vertexBufferBinding->getBuffer(vertexPos->getSource());
+			unsigned char* vertices =
+					static_cast<unsigned char*>(vertexBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL));
+			float* vertex;
+			for (int j = 0; j < data->vertexCount; j++)
+			{
+				vertexPos->baseVertexPointerToElement(vertices, (void **)&vertex);
+				btVector3 v1(vertex[0], vertex[0], vertex[0]);
+				meshShape->addPoint(v1, true);
+				vertices += vertexBuffer->getVertexSize();
+			}
+			vertexBuffer->unlock();
+		}
+		delete shape;
+		shape = meshShape;
+	}
+	else if (mesh == PHYS_S_MESH)
+	{
+		/*
+		glm::vec3 vert;
+		btTriangleMesh *mesh = new btTriangleMesh();
+		btVector3 *vertex;
+		physMesh.clear();
+		for (int i = 0; i < final.getIndices().size(); i++)
+		{
+			//load in points
+			vert = final.getVerts()[final.getIndices()[i]].vertex;
+			vertex = new btVector3(vert.x, vert.y, vert.z);
+			physMesh.push_back(*vertex);
+			delete vertex;
+		}
+
+		for (int i = 0; i < physMesh.size(); i += 3)
+		{
+			//send in triangle
+			mesh->addTriangle(physMesh[i],physMesh[i+1],physMesh[i+2]);
+		}
+
+		delete shape;
+		shape = new btBvhTriangleMeshShape(mesh, true);
+		isStatic = true;
+		 */
+	}
+	else
+	{
+		std::cout << "INCORRECT PHYS INITIALIZATION" << std::endl;
+		std::cout << "Defaulting to sphere" << std::endl;
+		shape = new btSphereShape(1.0f);
+	}
+}
+
 void Physics3D::initPhysics()
 {
 	//base initial position on model matrix
@@ -135,6 +196,7 @@ void Physics3D::initPhysics()
 
 	physics = new btRigidBody(objCI);
 	entity->engine->physicsMgr->physWorld->addRigidBody(physics);
+	physics->setActivationState(DISABLE_DEACTIVATION);
 }
 
 
