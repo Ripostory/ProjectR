@@ -11,6 +11,7 @@
 #include <FlyingEntity381.h>
 #include <Physics2D.h>
 #include <bullet/btBulletDynamicsCommon.h>
+#include <bullet/btBulletCollisionCommon.h>
 #include <PhysicsMgr.h>
 
 class Physics3D: public Aspect {
@@ -23,7 +24,7 @@ public:
 	virtual void initPhysics();
 	void applyForce(Ogre::Vector3);
 
-    void setCollisionMesh(int base);
+    void setCollisionMesh(int base, Ogre::String file);
     void setCollisionMesh(int box, Ogre::Vector3 size);
     void setCollisionMesh(int sphere, float radius);
     void setCollisionMesh(int capCylCone, float, float);
@@ -39,9 +40,6 @@ protected:
     btRigidBody *physics;
     btCollisionShape *shape;
     btTransform transform;
-    float mass;
-    float friction;
-    float restitution;
     bool isStatic;
 };
 

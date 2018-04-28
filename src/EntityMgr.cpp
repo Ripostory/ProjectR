@@ -68,7 +68,7 @@ void EntityMgr::CreateEntityOfTypeAtPosition(EntityTypes entType, Ogre::Vector3 
 		break;
 	case CarrierType:
 //		CreateCarrier(pos);
-		ent = (Entity381 *) (new Carrier(engine, pos, count++));
+		ent = (Entity381 *) (new Level(engine, pos, count++));
 		break;
 	case SpeedBoatType:
 		//CreateSpeedBoat(pos);

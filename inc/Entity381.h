@@ -9,6 +9,14 @@
 
 #include <Engine.h>
 
+#define PHYS_BOX 		0
+#define PHYS_SPHERE 	1
+#define PHYS_CAPSULE 	2
+#define PHYS_CYLINDER	3
+#define PHYS_CONE		4
+#define PHYS_HULL		5
+#define PHYS_S_MESH		6
+
 class Entity381
 {
 public:
@@ -19,6 +27,7 @@ public:
 
   //static data
   int identity;
+  int physType;
   std::string name;
   std::string meshfilename;
   Ogre::SceneNode* sceneNode;
@@ -32,6 +41,12 @@ public:
   bool isSelected;
   float desiredHeading, desiredSpeed;
   float heading, speed;
+
+  //physics data
+  Ogre::Quaternion orientation;
+  float mass;
+  float friction;
+  float restitution;
 
   EntityTypes entityType;
 
@@ -48,10 +63,10 @@ protected:
 
 
 
-class Carrier: public Entity381 {
+class Level: public Entity381 {
 public:
-	Carrier(Engine *engine, Ogre::Vector3 pos, int identity);
-	virtual ~Carrier();
+	Level(Engine *engine, Ogre::Vector3 pos, int identity);
+	virtual ~Level();
 
 };
 

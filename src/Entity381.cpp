@@ -28,6 +28,7 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
 	isSelected = false;
 
 	name = "Entity381";//meshfname + IntToString(identity);
+	physType = PHYS_HULL;
 /*
 	ogreEntity = engine->gfxMgr->mSceneMgr->createEntity(meshfilename);
 	sceneNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode(pos);
@@ -46,6 +47,11 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
 	this->desiredSpeed = this->speed = 0;
 	this->minSpeed = this->maxSpeed = 0;
 
+	//physics data
+	mass = 10.0f;
+	friction = 0.3f;
+	restitution = 0.2;
+
 }
 
 Entity381::~Entity381(){
@@ -59,7 +65,7 @@ void Entity381::Init(){
 	sceneNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode(position);
 	sceneNode->attachObject(ogreEntity);
 	Physics3D *phys = (Physics3D*)aspects[0];
-	phys->setCollisionMesh(PHYS_HULL);
+	phys->setCollisionMesh(physType, meshfilename);
 	phys->initPhysics();
 }
 
@@ -87,17 +93,14 @@ DDG51::~DDG51(){
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-Carrier::Carrier(Engine *engine, Ogre::Vector3 pos, int ident):
+Level::Level(Engine *engine, Ogre::Vector3 pos, int ident):
 		Entity381(engine, pos, ident){
-	meshfilename = "cvn68.mesh";
+	meshfilename = "Room.mesh";
 	entityType = CarrierType;
-	this->minSpeed = 0;
-	this->maxSpeed = 20.0f;//meters per second...
-	this->acceleration = 1.0f; // slow
-	this->turnRate = 10.0f; //2 degrees per second
+	physType = PHYS_S_MESH;
 }
 
-Carrier::~Carrier(){
+Level::~Level(){
 
 }
 //-------------------------------------------------------------------------------------------------------------------------------

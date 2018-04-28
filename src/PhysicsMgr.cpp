@@ -81,17 +81,17 @@ void PhysicsMgr::setGravity(Ogre::Vector3 ref)
 	physWorld->setGravity(btVector3(gravity.x,gravity.y,gravity.z));
 }
 
-void PhysicsMgr::makePlane()
+void PhysicsMgr::makePlane(Ogre::Vector3 n, float distance)
 {
 	btRigidBody *planeCollider;
 	btCollisionShape* groundShape =
-			new btStaticPlaneShape(btVector3(0, 1, 0), -60);
+			new btStaticPlaneShape(btVector3(n.x, n.y, n.z), distance);
 	btDefaultMotionState* groundMotionState =
 	        new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -1, 0)));
 	btRigidBody::btRigidBodyConstructionInfo
 	        groundRigidBodyCI(0, groundMotionState, groundShape, btVector3(0, 0, 0));
 	groundRigidBodyCI.m_restitution = 0.5f;
-	groundRigidBodyCI.m_friction = 0.1f;
+	groundRigidBodyCI.m_friction = 0.5f;
 
 	//add collider
 	planeCollider = new btRigidBody(groundRigidBodyCI);

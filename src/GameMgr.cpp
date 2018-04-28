@@ -48,23 +48,22 @@ void GameMgr::LoadLevel(){
 	  Ogre::Light* light = engine->gfxMgr->mSceneMgr->createLight("MainLight");
 	  light->setPosition(20.0, 80.0, 50.0);
 
-	  //room
-	    Ogre::Entity* ogreEntity3 = engine->gfxMgr->mSceneMgr->createEntity("Room.mesh");
-	    Ogre::SceneNode* ogreNode3 = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode();
-	    ogreNode3->setPosition(0, 0, 0);
-	    ogreNode3->attachObject(ogreEntity3);
-
 	  // A node to attach the camera to so we can move the camera node instead of the camera.
 	  cameraNode = engine->gfxMgr->mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	  cameraNode->setPosition(0, 0, 0);
 	  cameraNode->attachObject(engine->gfxMgr->mCamera);
 
 	  //make camera offset
-	  engine->gfxMgr->mCamera->setPosition(800 ,800,800);
+	  engine->gfxMgr->mCamera->setPosition(1600 ,1600,1600);
 	  engine->gfxMgr->mCamera->lookAt(0,0,0);
 
 	  //engine->gfxMgr->MakeSky();
-	  engine->physicsMgr->makePlane();
+	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,1,0), -400);
+	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,-1,0), 400);
+	  //engine->physicsMgr->makePlane(Ogre::Vector3(1,0,0), -400);
+	  //engine->physicsMgr->makePlane(Ogre::Vector3(-1,0,0), 400);
+	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,1), -400);
+	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,-1), 400);
 	  MakeEntities();
 }
 
@@ -72,6 +71,7 @@ void GameMgr::LoadLevel(){
 void GameMgr::MakeEntities(){
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
+	engine->entityMgr->CreateEntityOfTypeAtPosition(CarrierType, pos);
 	engine->entityMgr->SelectNextEntity(); //sets selection
 }
 

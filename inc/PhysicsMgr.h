@@ -17,7 +17,7 @@
 #define PHYS_CYLINDER	3
 #define PHYS_CONE		4
 #define PHYS_HULL		5
-#define PHYS_S_MESH	6
+#define PHYS_S_MESH		6
 
 #ifndef PHYSICSMGR_H_
 #define PHYSICSMGR_H_
@@ -36,7 +36,7 @@ public:
 
 	Ogre::Vector3 getGravity();
 	void setGravity(Ogre::Vector3);
-	void makePlane();
+	void makePlane(Ogre::Vector3 normal, float distance);
 	Ogre::Vector3 baseGravity;
 	btDiscreteDynamicsWorld *physWorld;
 private:
