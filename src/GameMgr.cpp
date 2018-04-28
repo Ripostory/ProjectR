@@ -11,6 +11,7 @@
 #include <GameMgr.h>
 #include <GfxMgr.h>
 #include <PhysicsMgr.h>
+#include <SoundMgr.h>
 
 #include <iostream>
 #include <Types381.h>
@@ -65,6 +66,7 @@ void GameMgr::LoadLevel(){
 	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,1), -400);
 	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,-1), 400);
 	  MakeEntities();
+	  engine->soundMgr->loadStartBackground();
 }
 
 

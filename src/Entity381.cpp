@@ -47,6 +47,11 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
 	this->desiredSpeed = this->speed = 0;
 	this->minSpeed = this->maxSpeed = 0;
 
+	this->playSound = false;
+	this->soundFile = "Boat-Sound.wav";
+	this->auioId = 0;
+	this->didSelectSoundPlay = false;
+
 	//physics data
 	mass = 10.0f;
 	friction = 0.3f;

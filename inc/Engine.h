@@ -14,6 +14,7 @@ class GfxMgr;
 class InputMgr;
 class UiMgr;
 class PhysicsMgr;
+class SoundMgr;
 
 class Engine {
 public:
@@ -26,6 +27,7 @@ public:
 	InputMgr  *inputMgr;
 	UiMgr	  *uiMgr;
 	PhysicsMgr*physicsMgr;
+	SoundMgr  *soundMgr;
 
 	void Init();
 	void Run();

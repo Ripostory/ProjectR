@@ -47,6 +47,13 @@ public:
   float mass;
   float friction;
   float restitution;
+  bool didSelectSoundPlay;
+
+
+  //sound
+  std::string soundFile;
+  bool playSound;
+  unsigned int auioId;
 
   EntityTypes entityType;
 
