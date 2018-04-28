@@ -28,7 +28,7 @@ class Engine;
     const int soundPerEnt = 3;      // max different sounds to randomly choose per entity
 	const int maxAudioBuffers = 63; // + 1 for background music
 	const int maxAudioSources = 15; // + 1 for background music
-	const std::string backgroundMusicFilename = "assets/sounds/GoodDay.wav";
+	const std::string backgroundMusicFilename = "assets/sounds/backgroundMusic.wav";
 	///home/sushil/workspace/fe1/
 
 
@@ -59,6 +59,7 @@ class Engine;
 
 		//Special treatment for background source and buffer
 		ALuint backgroundMusicBuffer, backgroundMusicSource;
+		ALuint selectionSource;
         ALuint battleSoundSource; //default battle sound source, not entity specific
 		WaveInfo *backgroundWaveInfo;
 		//unsigned int scvId;
@@ -85,9 +86,9 @@ class Engine;
 		//default methods
 		void initialize();
 		void crosslink();
-		void init();
-		void loadLevel();
-		void tick(double dtime);
+		void Init();
+		void LoadLevel();
+		void Tick(float dt);
 		void releaseLevel();
 		void cleanup ();
 
@@ -116,6 +117,7 @@ class Engine;
 		bool stopBackground();
 		bool pauseBackground();
 		bool resumeBackground();
+		bool playSelect();
 
 		//bool registerCreate(FastEcslent::EntityType et, std::string filename);
                 bool registerSelection(Entity381 et, std::string filename);

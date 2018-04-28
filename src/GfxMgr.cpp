@@ -74,10 +74,7 @@ GfxMgr::GfxMgr(Engine *engine): Mgr(engine) {
 
   Ogre::Viewport* vp = mWindow->addViewport(mCamera);
   vp->setBackgroundColour(Ogre::ColourValue(0, 0, 0));
-
-  mCamera->setAspectRatio(
-    Ogre::Real(vp->getActualWidth()) /
-    Ogre::Real(vp->getActualHeight()));
+  mCamera->setOrthoWindow(Ogre::Real(vp->getActualWidth()), Ogre::Real(vp->getActualHeight()));
 
 
   //-----------------------------------------------------------------------

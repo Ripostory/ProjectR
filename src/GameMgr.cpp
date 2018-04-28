@@ -66,7 +66,7 @@ void GameMgr::LoadLevel(){
 	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,1), -400);
 	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,-1), 400);
 	  MakeEntities();
-	  engine->soundMgr->loadStartBackground();
+	  //engine->soundMgr->loadStartBackground();
 }
 
 
@@ -125,6 +125,9 @@ void GameMgr::rotateCam(float degrees, Ogre::Vector3 axis)
 	baseTime = 0;
 	Ogre::Vector3 nDir = desiredOrientation * dir;
 	engine->physicsMgr->setGravity(nDir);
+
+	//play sound
+	engine->soundMgr->playSelect();
 }
 
 

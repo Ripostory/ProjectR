@@ -48,7 +48,7 @@ SoundMgr::~SoundMgr(){
 	std::cout << "Bye audio. ....   Sounds good, bye" << std::endl;
 }
 
-void SoundMgr::init(){
+void SoundMgr::Init(){
 	initialize();
 }
 
@@ -98,7 +98,7 @@ void SoundMgr::initialize(void){
 
 	unsigned int sid;
         //background music
-	std::string filename = "data/watercraft/sounds/backgroundMusic.wav";
+	std::string filename = "assets/sounds/backgroundMusic.wav";
 	if (this->reserveAudio(filename, true, sid)){
 		std::cout << "background music loaded" << std::endl;
                 backgroundMusicSource = sourceInfo[sid].source;
@@ -108,7 +108,7 @@ void SoundMgr::initialize(void){
 
         initWatercraftSounds();
 
-        //filename = "data/watercraft/sounds/explosion.wav";
+        //filename = "assets/sounds/explosion.wav";
         //default explosion sound for all entities
         if (this->reserveAudio(filename, false, sid)){
             battleSoundSource = sourceInfo[sid].source;
@@ -116,16 +116,29 @@ void SoundMgr::initialize(void){
             alSourcei(this->battleSoundSource, AL_MAX_DISTANCE, 8000.0f);
         }
 
+        //load key press audio
+    	unsigned int kid;
+            //background music
+    	std::string selfilename = "assets/sounds/clong.wav";
+    	if (this->reserveAudio(selfilename, true, kid)){
+    		std::cout << "selection sound loaded" << std::endl;
+                    selectionSource = sourceInfo[kid].source;
+                    loadAudio(selfilename, kid);
+                    this->setSound(selectionSource, Ogre::Vector3(0,0,0),
+                    		Ogre::Vector3(0,0,0),Ogre::Vector3(0,0,0), 9999, true, true, 1.0);
+            }
+    	std::cout << "selection sound loaded" << std::endl;
+    	this->playSelect();
 	return;
 
 }
 
 bool SoundMgr::initWatercraftSounds(){
         //registering all sounds
-		std::string selectionFilename = "data/watercraft/sounds/takeYourOrder.wav";
-        std::string selection2Filename = "data/watercraft/sounds/GoodDay.wav";
-        //std::string createShipFilename = "data/watercraft/sounds/boatMoving.wav";
-        //std::string createBuildingFilename = "data/watercraft/sounds/clong.wav";
+		std::string selectionFilename = "assets/sounds/takeYourOrder.wav";
+        std::string selection2Filename = "assets/sounds/GoodDay.wav";
+        //std::string createShipFilename = "assets/sounds/boatMoving.wav";
+        //std::string createBuildingFilename = "assets/sounds/clong.wav";
         for(std::vector<Entity381 *>::const_iterator et = engine->entityMgr->entities.begin();
         		et != engine->entityMgr->entities.end(); ++et)
         	{
@@ -203,7 +216,7 @@ void SoundMgr::syncListenerToCamera(){
 
 bool SoundMgr::frameRenderingQueued(const Ogre::FrameEvent& evt)
 {
-	tick(evt.timeSinceLastFrame);
+	Tick(evt.timeSinceLastFrame);
 	return true;
 }
 bool SoundMgr::frameStarted(const Ogre::FrameEvent& evt){
@@ -220,7 +233,7 @@ void SoundMgr::crosslink(void){
 	return;
 }
 
-void SoundMgr::loadLevel(void){
+void SoundMgr::LoadLevel(void){
 	syncListenerToCamera();
 	//load sounds, bind buffers, start background music
 	//read sound files
@@ -244,7 +257,7 @@ void SoundMgr::attachSelectedNodeToSoundIndex(Entity381 *ent, unsigned int index
 	setSoundPosition(this->sourceInfo[index].source, pos);
 }
 
-void SoundMgr::tick(double dtime){
+void SoundMgr::Tick(float dtime){
 
 	syncListenerToCamera();
 
@@ -676,6 +689,11 @@ std::string SoundMgr::getFQFNFromFilename(std::string filename){
 //	}
 //	return pathname+fname;
 	return filename;
+}
+
+bool SoundMgr::playSelect()
+{
+	return playAudio(selectionSource, true);
 }
 
 //specific to FastEcslsent------------------------------------------------------------------------------------
