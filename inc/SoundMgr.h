@@ -154,13 +154,6 @@ class Engine;
         bool setSoundPosition(ALuint audioID, Ogre::Vector3 position );
 
         bool setSoundDisposition(ALuint audioID, Ogre::Vector3 position, Ogre::Vector3 velocity, Ogre::Vector3 direction );
-
-        bool setSound(ALuint audioID, Ogre::Vector3 position,
-            Ogre::Vector3 velocity, Ogre::Vector3 direction, float maxDistance,
-            bool playNow, bool forceRestart, float minGain );
-
-        bool setListenerDisposition( Ogre::Vector3 position, Ogre::Vector3 velocity, Ogre::Quaternion orientation );
-
 	};
 
         //double volume;
