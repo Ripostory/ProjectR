@@ -131,42 +131,44 @@ void InputMgr::LoadLevel(){
 }
 
 bool InputMgr::keyPressed(const OIS::KeyEvent& ke){
-    if (mKeyboard->isKeyDown(OIS::KC_W))
-    {
-    	engine->gameMgr->turnCamX(true);
-    }
+	if(engine->uiMgr->Interrupt == false)
+	{
+		if (mKeyboard->isKeyDown(OIS::KC_W))
+		{
+			engine->gameMgr->turnCamX(true);
+		}
 
-    if (mKeyboard->isKeyDown(OIS::KC_S))
-    {
-    	engine->gameMgr->turnCamX(false);
-    }
+		if (mKeyboard->isKeyDown(OIS::KC_S))
+		{
+			engine->gameMgr->turnCamX(false);
+		}
 
-    if (mKeyboard->isKeyDown(OIS::KC_A))
-    {
-    	engine->gameMgr->turnCamY(true);
-    }
+		if (mKeyboard->isKeyDown(OIS::KC_A))
+		{
+			engine->gameMgr->turnCamY(true);
+		}
 
-    if (mKeyboard->isKeyDown(OIS::KC_D))
-    {
-    	engine->gameMgr->turnCamY(false);
-    }
+		if (mKeyboard->isKeyDown(OIS::KC_D))
+		{
+			engine->gameMgr->turnCamY(false);
+		}
 
-    if (mKeyboard->isKeyDown(OIS::KC_E))
-    {
-    	engine->gameMgr->turnCamZ(true);
-    }
+		if (mKeyboard->isKeyDown(OIS::KC_E))
+		{
+			engine->gameMgr->turnCamZ(true);
+		}
 
-    if (mKeyboard->isKeyDown(OIS::KC_Q))
-    {
-    	engine->gameMgr->turnCamZ(false);
-    }
+		if (mKeyboard->isKeyDown(OIS::KC_Q))
+		{
+			engine->gameMgr->turnCamZ(false);
+		}
 
-    if (mKeyboard->isKeyDown(OIS::KC_F))
-    {
-    	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
-    	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
-    }
-
+		if (mKeyboard->isKeyDown(OIS::KC_F))
+		{
+			Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
+			engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
+		}
+	}
 
 	return true;
 }

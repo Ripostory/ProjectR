@@ -11,6 +11,7 @@
 #include <InputMgr.h>
 #include <EntityMgr.h>
 #include <Types381.h>
+#include <OgreTextAreaOverlayElement.h>
 
 UiMgr::UiMgr(Engine* eng): Mgr(eng){
 	// Initialize the OverlaySystem (changed for Ogre 1.9)
@@ -30,6 +31,7 @@ void UiMgr::Init(){
     mInputContext.mKeyboard = engine->inputMgr->mKeyboard;
     mInputContext.mMouse = engine->inputMgr->mMouse;
     mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", engine->gfxMgr->mWindow, mInputContext, this);
+    fillingBox = false;
     //mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     //mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
     //mTrayMgr->hideCursor();
@@ -39,7 +41,49 @@ void UiMgr::stop(){
 
 }
 
+void UiMgr::openTextBox(Ogre::String name, Ogre::String text){
+	mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", name, 800, 150);
+	mTextBox->setTextAlignment(Ogre::TextAreaOverlayElement::Left);
+	mTextBox->setPadding((Ogre::Real)40);
+	fillingBox = true;
+	Interrupt = true;
+	current = 0;
+
+	dialogue.push_back("Welcome to Project R(Arrr)!");
+	dialogue.push_back("In this game you will be playing a prisoner aboard a space pirate vessel.");
+	dialogue.push_back("It is your goal to try and escape your captors. There's only one problem...");
+	dialogue.push_back("You're tied up and can't move!");
+	dialogue.push_back("Fortunately you have telekinetic abilities and can change your own personal gravity to any direction you want.");
+	dialogue.push_back("Use the WASD keys to use your powers. \nYou can use this empty cell to aquaint yourself with the controls.");
+	dialogue.push_back("After that you're ON YOUR OWN.");
+	dialogue.push_back("If you can sneak through the ship to the escape pods you'll be home free!");
+	dialogue.push_back("Be careful though there are pirates walking about and a security system that's less than friendly.");
+	dialogue.push_back("Good Luck!");
+
+	mTrayMgr->createButton(OgreBites::TL_BOTTOMRIGHT, "Next", ">>", 150);
+
+	mTextBox->getOverlayElement()->setColour(Ogre::ColourValue(0,0,0));
+
+
+}
+
+void UiMgr::fillTextBox(Ogre::String text){
+	Ogre::String stringTemp;
+
+	if(current < text.size())
+	{
+		stringTemp = text[current];
+		mTextBox->appendText(stringTemp);
+		current++;
+	}
+	else
+	{
+		fillingBox = false;
+	}
+}
+
 void UiMgr::LoadLevel(){
+	Interrupt = true;
 	mTrayMgr->showBackdrop("ECSLENT/UI");
 
 	mTrayMgr->createLabel(OgreBites::TL_CENTER,"MenuLabel","PROJECT R(ARRR)",250);
@@ -52,6 +96,8 @@ void UiMgr::LoadLevel(){
 
 void UiMgr::Tick(float dt){
 	mTrayMgr->refreshCursor();
+	if(fillingBox)
+		fillTextBox(text);
 }
 
 void UiMgr::windowResized(Ogre::RenderWindow* rw){
@@ -93,7 +139,20 @@ bool UiMgr::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id){
 void UiMgr::buttonHit(OgreBites::Button *b){
     if(b->getName()=="MainMenu1")
     {
-    	mTrayMgr->hideAll();
+    	mTrayMgr->destroyAllWidgets();
+    	openTextBox("Bob    ", "Hifjiweogjiodsjfoijoewijoeifdjmwgiorejiorjfoifjoijroieoijfeiofjeoigjoreij");
+    	Interrupt = false;
+    }
+    else if(b->getName()=="Next"){
+    	fillingBox = true;
+    	mTextBox->clearText();
+    	text = dialogue.front();
+    	dialogue.erase(dialogue.begin());
+    	current = 0;
+    	if(dialogue.empty()){
+    		mTrayMgr->hideAll();
+    		Interrupt = false;
+    	}
     }
 
 }

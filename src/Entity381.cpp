@@ -112,12 +112,9 @@ Level::~Level(){
 
 SpeedBoat::SpeedBoat(Engine *engine, Ogre::Vector3 pos, int ident):
 		Entity381(engine, pos, ident){
-	meshfilename = "cigarette.mesh";
+	meshfilename = "Space.mesh";
 	entityType = SpeedBoatType;
-	this->minSpeed = 0;
-	this->maxSpeed = 30.0f;//meters per second...
-	this->acceleration = 5.0f; // slow
-	this->turnRate = 30.0f; //2 degrees per second
+	physType = PHYS_S_MESH;
 }
 
 SpeedBoat::~SpeedBoat(){

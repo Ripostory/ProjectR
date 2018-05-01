@@ -14,8 +14,11 @@
 #include <OISKeyboard.h>
 #include <OISMouse.h>
 #include <Mgr.h>
+#include <vector>
 
 #include <SdkTrays.h>
+
+using namespace std;
 
 class UiMgr : public Mgr, public Ogre::FrameListener, public OIS::KeyListener, public OIS::MouseListener, public Ogre::WindowEventListener, public OgreBites::SdkTrayListener
 {
@@ -43,11 +46,20 @@ public:
 	virtual void Tick(float dt);
 	virtual void LoadLevel();
 	virtual void stop();
+	void openTextBox(Ogre::String name, Ogre::String text);
+	void fillTextBox(Ogre::String text);
+	void growTextBox(Ogre::Real desiredWidth, Ogre::Real desiredHeight);
+	void changeTextBox(Ogre::Real width, Ogre::Real height);
 
 	OgreBites::InputContext mInputContext;
 	OgreBites::SdkTrayManager* mTrayMgr;
+	OgreBites::TextBox* mTextBox;
 	Ogre::OverlaySystem* mOverlaySystem;
 	OgreBites::Label *mLabel;
+	Ogre::String text;
+	std::vector<Ogre::String> dialogue;
+	bool Interrupt, fillingBox;
+	int current = 0;
 };
 
 #endif /* INC_UIMGR_H_ */
