@@ -10,6 +10,7 @@
 #include<Entity381.h>
 #include<Physics3D.h>
 #include<Physics2D.h>
+#include<GameMgr.h>
 #include<AI.h>
 
 std::string IntToString(int x){
@@ -79,6 +80,12 @@ void Entity381::Init(){
 void Entity381::Tick(float dt){
 	for(unsigned int i = 0; i < aspects.size(); i++){
 		aspects[i]->Tick(dt);
+	}
+
+	//check if win condition satisfied
+	if (position.length() > 1300)
+	{
+		engine->gameMgr->playerWon();
 	}
 }
 

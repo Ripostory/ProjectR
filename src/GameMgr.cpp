@@ -12,7 +12,7 @@
 #include <GfxMgr.h>
 #include <PhysicsMgr.h>
 #include <SoundMgr.h>
-
+#include <UiMgr.h>
 #include <iostream>
 #include <Types381.h>
 
@@ -24,6 +24,7 @@ GameMgr::GameMgr(Engine *engine): Mgr(engine) {
 	cameraNode = 0;
 	baseTime = 0;
 	animTime = 0.1;
+	winCondition = false;
 }
 
 GameMgr::~GameMgr() {
@@ -132,7 +133,14 @@ void GameMgr::rotateCam(float degrees, Ogre::Vector3 axis)
 	engine->soundMgr->playSelect();
 }
 
-
+void GameMgr::playerWon()
+{
+	if (!winCondition)
+	{
+		winCondition = true;
+		engine->uiMgr->openTextBox("Level 1 completed!", "Player");
+	}
+}
 
 
 
