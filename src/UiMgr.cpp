@@ -68,6 +68,7 @@ void UiMgr::openTextBox(Ogre::String name, Ogre::String text){
 	{
 		mTextBox->show();
 		mTextBox->setCaption(name);
+		this->text = text;
 	}
 
 	std::cout << "Test 2" << std::endl;
