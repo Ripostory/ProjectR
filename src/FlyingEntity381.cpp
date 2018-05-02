@@ -9,7 +9,7 @@
 #include "FlyingEntity381.h"
 
 FlyingEntity381::FlyingEntity381(Engine *engine, Ogre::Vector3 pos, int ident):
-	Entity381(engine, pos, ident) {
+	Entity381(engine, pos, ident, 10.0f) {
 	// TODO Auto-generated constructor stub
 	minAltitude = 0;
 	maxAltitude = 1000;

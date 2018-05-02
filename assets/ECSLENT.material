@@ -10,7 +10,7 @@ material ECSLENT/UI
 			
 			texture_unit
 			{
-				texture ecslentUI3.png
+				texture Splash.jpg
 			}
 		}
 	}

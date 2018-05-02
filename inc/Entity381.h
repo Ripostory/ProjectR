@@ -17,10 +17,13 @@
 #define PHYS_HULL		5
 #define PHYS_S_MESH		6
 
+class Patroler;
+
 class Entity381
 {
 public:
-  Entity381(Engine *engine, Ogre::Vector3 pos, int identity);
+  Entity381(Engine *engine, Ogre::Vector3 pos, int identity, float newMass);
+  Entity381(Engine *engine, Ogre::Vector3 pos, int identity, float newMass, Patroler* pat);
   virtual ~Entity381();
 
   Engine *engine;
@@ -103,6 +106,14 @@ public:
 	Alien(Engine *engine, Ogre::Vector3 pos, int identity);
 	virtual ~Alien();
 
+};
+
+class Patroler: public Entity381 {
+public:
+	Patroler(Engine *engine, Ogre::Vector3 pos, int identity, Ogre::Vector3 planeInfo);
+	virtual ~Patroler();
+
+	Ogre::Vector3 plane;
 };
 
 

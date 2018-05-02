@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/AI.cpp \
 ../src/Aspect.cpp \
 ../src/Engine.cpp \
 ../src/Entity381.cpp \
@@ -22,6 +23,7 @@ CPP_SRCS += \
 ../src/main.cpp 
 
 OBJS += \
+./src/AI.o \
 ./src/Aspect.o \
 ./src/Engine.o \
 ./src/Entity381.o \
@@ -40,6 +42,7 @@ OBJS += \
 ./src/main.o 
 
 CPP_DEPS += \
+./src/AI.d \
 ./src/Aspect.d \
 ./src/Engine.d \
 ./src/Entity381.d \

@@ -85,6 +85,9 @@ void EntityMgr::CreateEntityOfTypeAtPosition(EntityTypes entType, Ogre::Vector3 
 	case BansheeType:
 		ent = (Entity381 *) ((FlyingEntity381*) (new Banshee(engine, pos, count++)));
 		break;
+	case PatrolerType:
+		ent = (Entity381 *) (new Patroler(engine, pos, count++, {0,1,1}));
+		break;
 	default:
 		ent = (Entity381*) (new DDG51(engine, pos, count++));//CreateEntity("robot.mesh", pos);
 		break;

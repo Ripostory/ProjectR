@@ -139,9 +139,11 @@ bool UiMgr::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id){
 void UiMgr::buttonHit(OgreBites::Button *b){
     if(b->getName()=="MainMenu1")
     {
+    	mTrayMgr->hideBackdrop();
     	mTrayMgr->destroyAllWidgets();
-    	openTextBox("Bob    ", "Hifjiweogjiodsjfoijoewijoeifdjmwgiorejiorjfoifjoijroieoijfeiofjeoigjoreij");
     	Interrupt = false;
+    	openTextBox("Bob    ", "Hifjiweogjiodsjfoijoewijoeifdjmwgiorejiorjfoifjoijroieoijfeiofjeoigjoreij");
+
     }
     else if(b->getName()=="Next"){
     	fillingBox = true;

@@ -8,6 +8,7 @@ enum EntityTypes {
 	FrigateType,
 	AlienType,
 	BansheeType,
+	PatrolerType,
 	None,
 };
 

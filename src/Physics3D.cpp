@@ -42,9 +42,13 @@ void Physics3D::Tick(float dt){
 		  physics->getMotionState()->getWorldTransform(transform);
 
 		  //TODO add more functionality
+		  if(entity->mass != 0){
 		  entity->position = btToOgre(transform.getOrigin());
+		  }
 		  //get quaternion from transform
+		  if(entity->mass != 0){
 		  entity->orientation = Ogre::Quaternion(btToOgre(transform.getBasis()));
+		  }
 	  }
 }
 

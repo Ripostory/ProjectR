@@ -74,6 +74,7 @@ void GameMgr::MakeEntities(){
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(CarrierType, pos);
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
 	//engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType, pos);
 	engine->entityMgr->SelectNextEntity(); //sets selection
 }

@@ -9,6 +9,8 @@
 
 #include<Entity381.h>
 #include<Physics3D.h>
+#include<Physics2D.h>
+#include<AI.h>
 
 std::string IntToString(int x){
 	char tmp[10000];
@@ -16,7 +18,7 @@ std::string IntToString(int x){
 	return std::string(tmp);
 }
 
-Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
+Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident, float newMass){
 
 	this->engine = engine;
 
@@ -53,7 +55,7 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident){
 	this->didSelectSoundPlay = false;
 
 	//physics data
-	mass = 10.0f;
+	mass = newMass;
 	friction = 0.3f;
 	restitution = 0.2;
 
@@ -82,7 +84,7 @@ void Entity381::Tick(float dt){
 
 //-------------------------------------------------------------------------------------------------------------------------------
 DDG51::DDG51(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident){
+		Entity381(engine, pos, ident, 10.0f){
 
 	meshfilename = "ddg51.mesh";
 	entityType = DDG51Type;
@@ -99,7 +101,7 @@ DDG51::~DDG51(){
 
 //-------------------------------------------------------------------------------------------------------------------------------
 Level::Level(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident){
+		Entity381(engine, pos, ident, 10.0f){
 	meshfilename = "Room.mesh";
 	entityType = CarrierType;
 	physType = PHYS_S_MESH;
@@ -111,7 +113,7 @@ Level::~Level(){
 //-------------------------------------------------------------------------------------------------------------------------------
 
 SpeedBoat::SpeedBoat(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident){
+		Entity381(engine, pos, ident, 10.0f){
 	meshfilename = "Space.mesh";
 	entityType = SpeedBoatType;
 	physType = PHYS_S_MESH;
@@ -123,7 +125,7 @@ SpeedBoat::~SpeedBoat(){
 //-------------------------------------------------------------------------------------------------------------------------------
 
 Frigate::Frigate(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident){
+		Entity381(engine, pos, ident, 10.0f){
 	meshfilename = "sleek.mesh";
 	entityType = FrigateType;
 	this->minSpeed = 0;
@@ -138,7 +140,7 @@ Frigate::~Frigate(){
 
 //-------------------------------------------------------------------------------------------------------------------------------
 Alien::Alien(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident){
+		Entity381(engine, pos, ident, 10.0f){
 	meshfilename = "alienship.mesh";
 	entityType = AlienType;
 	this->minSpeed = 0;
@@ -152,4 +154,24 @@ Alien::~Alien(){
 }
 //-------------------------------------------------------------------------------------------------------------------------------
 
+Patroler::Patroler(Engine *engine, Ogre::Vector3 pos, int ident, Ogre::Vector3 planeInfo):
+		Entity381(engine, pos, ident, 0.0f){
+	meshfilename = "ddg51.mesh";
+	entityType = PatrolerType;
+	this->minSpeed = 0;
+	this->maxSpeed = 50.0f;//meters per second...
+	this->acceleration = 10.0f; // slow
+	this->turnRate = 40.0f; //2 degrees per second
+	plane = planeInfo;
 
+	UnitAI* ai = new UnitAI(this, this, engine);
+	aspects.push_back((Aspect*) ai);
+
+	//Physics2D* phx = new Physics2D(this);
+	//aspects.push_back((Aspect*) phx);
+
+}
+
+Patroler::~Patroler(){
+
+}
