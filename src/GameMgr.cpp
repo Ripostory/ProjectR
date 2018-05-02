@@ -138,7 +138,7 @@ void GameMgr::playerWon()
 	if (!winCondition)
 	{
 		winCondition = true;
-		engine->uiMgr->openTextBox("Level 1 completed!", "Player");
+		engine->uiMgr->openTextBox( "Player", "Level 1 completed!");
 	}
 }
 

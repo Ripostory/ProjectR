@@ -32,23 +32,12 @@ void UiMgr::Init(){
     mInputContext.mMouse = engine->inputMgr->mMouse;
     mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", engine->gfxMgr->mWindow, mInputContext, this);
     fillingBox = false;
-    //mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-    //mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
-    //mTrayMgr->hideCursor();
-}
 
-void UiMgr::stop(){
+    //
+    mTextBox = NULL;
+    mNext = NULL;
 
-}
-
-void UiMgr::openTextBox(Ogre::String name, Ogre::String text){
-	mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", name, 800, 150);
-	mTextBox->setTextAlignment(Ogre::TextAreaOverlayElement::Left);
-	mTextBox->setPadding((Ogre::Real)40);
-	fillingBox = true;
-	Interrupt = true;
-	current = 0;
-
+    //starting dialogue
 	dialogue.push_back("Welcome to Project R(Arrr)!");
 	dialogue.push_back("In this game you will be playing a prisoner aboard a space pirate vessel.");
 	dialogue.push_back("It is your goal to try and escape your captors. There's only one problem...");
@@ -59,12 +48,43 @@ void UiMgr::openTextBox(Ogre::String name, Ogre::String text){
 	dialogue.push_back("If you can sneak through the ship to the escape pods you'll be home free!");
 	dialogue.push_back("Be careful though there are pirates walking about and a security system that's less than friendly.");
 	dialogue.push_back("Good Luck!");
+    //mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
+    //mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
+    //mTrayMgr->hideCursor();
+}
 
-	mTrayMgr->createButton(OgreBites::TL_BOTTOMRIGHT, "Next", ">>", 150);
+void UiMgr::stop(){
 
-	mTextBox->getOverlayElement()->setColour(Ogre::ColourValue(0,0,0));
+}
 
+void UiMgr::openTextBox(Ogre::String name, Ogre::String text){
+	if(mTextBox == NULL)
+	{
+		mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", "GAME", 800, 150);
+		mTextBox->setTextAlignment(Ogre::TextAreaOverlayElement::Left);
+		mTextBox->setPadding((Ogre::Real)40);
+	}
+	else
+	{
+		mTextBox->show();
+		mTextBox->setCaption(name);
+	}
 
+	std::cout << "Test 2" << std::endl;
+	std::cout << "Test 3" << std::endl;
+	mTextBox->clearText();
+	fillingBox = true;
+	Interrupt = true;
+	current = 0;
+
+	if(mNext == NULL)
+	{
+		mTrayMgr->createButton(OgreBites::TL_BOTTOMRIGHT, "Next", ">>", 150);
+	}
+	else
+	{
+		mNext->show();
+	}
 }
 
 void UiMgr::fillTextBox(Ogre::String text){
@@ -140,21 +160,25 @@ void UiMgr::buttonHit(OgreBites::Button *b){
     if(b->getName()=="MainMenu1")
     {
     	mTrayMgr->hideBackdrop();
+    	//mTrayMgr->hideAll();
     	mTrayMgr->destroyAllWidgets();
     	Interrupt = false;
     	openTextBox("Bob    ", "Hifjiweogjiodsjfoijoewijoeifdjmwgiorejiorjfoifjoijroieoijfeiofjeoigjoreij");
 
     }
     else if(b->getName()=="Next"){
+    	if(dialogue.empty()){
+    		mNext = b;
+    		mTextBox->hide();
+    		b->hide();
+    		Interrupt = false;
+    		return;
+    	}
     	fillingBox = true;
     	mTextBox->clearText();
     	text = dialogue.front();
-    	dialogue.erase(dialogue.begin());
     	current = 0;
-    	if(dialogue.empty()){
-    		mTrayMgr->hideAll();
-    		Interrupt = false;
-    	}
+    	dialogue.erase(dialogue.begin());
     }
 
 }

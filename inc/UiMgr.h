@@ -54,6 +54,7 @@ public:
 	OgreBites::InputContext mInputContext;
 	OgreBites::SdkTrayManager* mTrayMgr;
 	OgreBites::TextBox* mTextBox;
+	OgreBites::Button* mNext;
 	Ogre::OverlaySystem* mOverlaySystem;
 	OgreBites::Label *mLabel;
 	Ogre::String text;
