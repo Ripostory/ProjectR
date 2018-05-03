@@ -58,8 +58,10 @@ public:
 	Ogre::OverlaySystem* mOverlaySystem;
 	OgreBites::Label *mLabel;
 	Ogre::String text;
-	std::vector<Ogre::String> dialogue;
-	bool Interrupt, fillingBox;
+
+	std::queue<Ogre::String> dialogue;
+	std::queue<Ogre::String> name;
+	bool Interrupt, fillingBox, isOpen;
 	int current = 0;
 };
 

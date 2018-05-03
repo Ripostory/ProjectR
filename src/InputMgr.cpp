@@ -131,7 +131,7 @@ void InputMgr::LoadLevel(){
 }
 
 bool InputMgr::keyPressed(const OIS::KeyEvent& ke){
-	if(engine->uiMgr->Interrupt == false)
+	if(!engine->uiMgr->Interrupt)
 	{
 		if (mKeyboard->isKeyDown(OIS::KC_W))
 		{

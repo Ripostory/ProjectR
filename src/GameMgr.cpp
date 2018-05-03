@@ -60,12 +60,6 @@ void GameMgr::LoadLevel(){
 	  engine->gfxMgr->mCamera->lookAt(0,0,0);
 
 	  //engine->gfxMgr->MakeSky();
-	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,1,0), -400);
-	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,-1,0), 400);
-	  //engine->physicsMgr->makePlane(Ogre::Vector3(1,0,0), -400);
-	  //engine->physicsMgr->makePlane(Ogre::Vector3(-1,0,0), 400);
-	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,1), -400);
-	  //engine->physicsMgr->makePlane(Ogre::Vector3(0,0,-1), 400);
 	  MakeEntities();
 	  //engine->soundMgr->loadStartBackground();
 }
@@ -139,6 +133,7 @@ void GameMgr::playerWon()
 	{
 		winCondition = true;
 		engine->uiMgr->openTextBox( "Player", "Level 1 completed!");
+		engine->uiMgr->openTextBox( "Player", "Press start to restart level");
 	}
 }
 

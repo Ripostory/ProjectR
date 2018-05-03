@@ -17,7 +17,7 @@ UiMgr::UiMgr(Engine* eng): Mgr(eng){
 	// Initialize the OverlaySystem (changed for Ogre 1.9)
 	    mOverlaySystem = new Ogre::OverlaySystem();
 	    engine->gfxMgr->mSceneMgr->addRenderQueueListener(mOverlaySystem);
-
+	    isOpen = false;
 	    //Ogre::WindowEventUtilities::addWindowEventListener(engine->gfxMgr->ogreRenderWindow, this);
 }
 
@@ -37,17 +37,6 @@ void UiMgr::Init(){
     mTextBox = NULL;
     mNext = NULL;
 
-    //starting dialogue
-	dialogue.push_back("Welcome to Project R(Arrr)!");
-	dialogue.push_back("In this game you will be playing a prisoner aboard a space pirate vessel.");
-	dialogue.push_back("It is your goal to try and escape your captors. There's only one problem...");
-	dialogue.push_back("You're tied up and can't move!");
-	dialogue.push_back("Fortunately you have telekinetic abilities and can change your own personal gravity to any direction you want.");
-	dialogue.push_back("Use the WASD keys to use your powers. \nYou can use this empty cell to aquaint yourself with the controls.");
-	dialogue.push_back("After that you're ON YOUR OWN.");
-	dialogue.push_back("If you can sneak through the ship to the escape pods you'll be home free!");
-	dialogue.push_back("Be careful though there are pirates walking about and a security system that's less than friendly.");
-	dialogue.push_back("Good Luck!");
     //mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     //mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
     //mTrayMgr->hideCursor();
@@ -57,35 +46,9 @@ void UiMgr::stop(){
 
 }
 
-void UiMgr::openTextBox(Ogre::String name, Ogre::String text){
-	if(mTextBox == NULL)
-	{
-		mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", "GAME", 800, 150);
-		mTextBox->setTextAlignment(Ogre::TextAreaOverlayElement::Left);
-		mTextBox->setPadding((Ogre::Real)40);
-	}
-	else
-	{
-		mTextBox->show();
-		mTextBox->setCaption(name);
-		this->text = text;
-	}
-
-	std::cout << "Test 2" << std::endl;
-	std::cout << "Test 3" << std::endl;
-	mTextBox->clearText();
-	fillingBox = true;
-	Interrupt = true;
-	current = 0;
-
-	if(mNext == NULL)
-	{
-		mTrayMgr->createButton(OgreBites::TL_BOTTOMRIGHT, "Next", ">>", 150);
-	}
-	else
-	{
-		mNext->show();
-	}
+void UiMgr::openTextBox(Ogre::String n, Ogre::String text){
+	dialogue.push(text);
+	name.push(n);
 }
 
 void UiMgr::fillTextBox(Ogre::String text){
@@ -117,6 +80,27 @@ void UiMgr::LoadLevel(){
 
 void UiMgr::Tick(float dt){
 	mTrayMgr->refreshCursor();
+
+	//check if there are queued messages
+	if (!dialogue.empty())
+	{
+		//check if another dialogue box is open
+		Interrupt = true;
+		if (!fillingBox && !isOpen)
+		{
+	    	fillingBox = true;
+	    	mTextBox->clearText();
+	    	mTextBox->setCaption(name.front());
+	    	text = dialogue.front();
+	    	current = 0;
+	    	dialogue.pop();
+	    	name.pop();
+			isOpen = true;
+			mTextBox->show();
+			mNext->show();
+		}
+	}
+
 	if(fillingBox)
 		fillTextBox(text);
 }
@@ -164,7 +148,27 @@ void UiMgr::buttonHit(OgreBites::Button *b){
     	//mTrayMgr->hideAll();
     	mTrayMgr->destroyAllWidgets();
     	Interrupt = false;
-    	openTextBox("Bob    ", "Hifjiweogjiodsjfoijoewijoeifdjmwgiorejiorjfoifjoijroieoijfeiofjeoigjoreij");
+
+    	//load textbox
+    	mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", "GAME", 800, 150);
+    	mTextBox->setText("   ");
+    	mTextBox->setTextAlignment(Ogre::TextAreaOverlayElement::Left);
+    	mTextBox->setPadding((Ogre::Real)40);
+    	mTextBox->show();
+    	mNext = mTrayMgr->createButton(OgreBites::TL_BOTTOMRIGHT, "Next", ">>", 150);
+    	mNext->show();
+
+        //starting dialogue
+    	openTextBox("Game", "Welcome to Project R(Arrr)!");
+    	openTextBox("User", "In this game you will be playing a prisoner aboard a space pirate vessel.");
+    	openTextBox("Game", "It is your goal to try and escape your captors. There's only one problem...");
+    	openTextBox("Game", "You're tied up and can't move!");
+    	openTextBox("User", "Fortunately you have telekinetic abilities and can change your own personal gravity to any direction you want.");
+    	openTextBox("Game", "Use the WASD keys to use your powers. \nYou can use this empty cell to aquaint yourself with the controls.");
+    	openTextBox("Game", "After that you're ON YOUR OWN.");
+    	openTextBox("Game", "If you can sneak through the ship to the escape pods you'll be home free!");
+    	openTextBox("Game", "Be careful though there are pirates walking about and a security system that's less than friendly.");
+    	openTextBox("Game", "Good Luck!");
 
     }
     else if(b->getName()=="Next"){
@@ -173,13 +177,21 @@ void UiMgr::buttonHit(OgreBites::Button *b){
     		mTextBox->hide();
     		b->hide();
     		Interrupt = false;
-    		return;
+    		isOpen = false;
+    		fillingBox = false;
     	}
-    	fillingBox = true;
-    	mTextBox->clearText();
-    	text = dialogue.front();
-    	current = 0;
-    	dialogue.erase(dialogue.begin());
+    	else
+    	{
+    		Interrupt = true;
+        	fillingBox = true;
+        	isOpen = true;
+        	mTextBox->clearText();
+        	mTextBox->setCaption(name.front());
+        	text = dialogue.front();
+        	current = 0;
+        	dialogue.pop();
+        	name.pop();
+    	}
     }
 
 }
