@@ -26,6 +26,7 @@ GameMgr::GameMgr(Engine *engine): Mgr(engine) {
 	baseTime = 0;
 	animTime = 0.1;
 	winCondition = false;
+	turnCounter = 0;
 }
 
 GameMgr::~GameMgr() {
@@ -63,6 +64,7 @@ void GameMgr::LoadLevel(){
 	  //engine->gfxMgr->MakeSky();
 	  MakeEntities();
 	  //engine->soundMgr->loadStartBackground();
+	  turnCounter = 0;
 }
 
 
@@ -126,6 +128,9 @@ void GameMgr::rotateCam(float degrees, Ogre::Vector3 axis)
 
 	//play sound
 	engine->soundMgr->playSelect();
+
+	//update turn counter
+	turnCounter++;
 }
 
 void GameMgr::playerWon()
