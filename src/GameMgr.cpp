@@ -41,6 +41,7 @@ void GameMgr::Tick(float dt)
 	//update animation timer
 	 if (baseTime <= 1.0f)
 		 baseTime += dt/animTime;
+
 }
 
 void GameMgr::LoadLevel(){
@@ -69,6 +70,7 @@ void GameMgr::LoadLevel(){
 void GameMgr::MakeEntities(){
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, pos);
+	engine->entityMgr->CreateLevel(LevelType, pos, "test.mesh");
 	engine->entityMgr->CreateLevel(LevelType, pos, "Room.mesh");
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
 	//engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType, pos);
@@ -136,14 +138,18 @@ void GameMgr::playerWon()
 		engine->uiMgr->openTextBox( "Player", "Level 1 completed!");
 		engine->uiMgr->openTextBox( "Player", "Press start to restart level");
 
-		if(engine->entityMgr->lvl == 2)
+		if(engine->entityMgr->lvl == 1)
 		{
 			engine->uiMgr->openTextBox("GAME", "YOU ESCAPED!!");
+			engine->uiMgr->openTextBox("Project Arr Credits", "Ronn(With Two Ns) Quijada:\n Sound\n Physics\n Camera\n Master Computer");
+			engine->uiMgr->openTextBox("Project Arr Credits", "Brianna Blain-Castelli:\n Artificial Intelligence\n Models\n User Interface\n Debugger");
+			engine->uiMgr->openTextBox("Project Arr Credits", "Ryan Fox:\n Artificial Intelligence\n Splash Screen\n User Interface\n Ideas Man");
+
 		}
 		else
 		{
-			//engine->entityMgr->lvl++;
-			//engine->entityMgr->levels[engine->entityMgr->lvl]->Init();
+			engine->entityMgr->lvl++;
+			engine->entityMgr->levels[engine->entityMgr->lvl]->Init();
 		}
 	}
 }

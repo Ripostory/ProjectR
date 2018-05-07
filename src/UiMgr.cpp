@@ -149,6 +149,10 @@ void UiMgr::buttonHit(OgreBites::Button *b){
     	mTrayMgr->destroyAllWidgets();
     	Interrupt = false;
 
+    	//load lvl
+    	engine->entityMgr->lvl = 0;
+
+
     	//load textbox
     	mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", "GAME", 800, 150);
     	mTextBox->setText("   ");
@@ -193,6 +197,10 @@ void UiMgr::buttonHit(OgreBites::Button *b){
         	dialogue.pop();
         	name.pop();
     	}
+    }
+    else if(b->getName()=="MainMenu3")
+    {
+    	engine->keepRunning = false;
     }
 
 }

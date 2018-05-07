@@ -17,7 +17,10 @@ public:
 	~UnitAI();
 
 	void Tick(float dt);
+	bool Done(Entity381* player, Entity381* Patroler);
+	void onSpot();
 
+	bool isAware;
 	Patroler* patroler;
 	Engine* engine;
 };
