@@ -89,6 +89,19 @@ void Entity381::Tick(float dt){
 	}
 }
 
+void Entity381::onCollision(Entity381* ref)
+{
+	//a collision has been detected with ref
+	std::cout << this->name << " collided with object " << ref->name << std::endl;
+
+}
+
+void Entity381::onRaycastHit()
+{
+	//object was hit by a ray
+	std::cout << "Oof, " << this->name << " was hit" << std::endl;
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------
 Player::Player(Engine *engine, Ogre::Vector3 pos, int ident):
 		Entity381(engine, pos, ident, 10.0f){

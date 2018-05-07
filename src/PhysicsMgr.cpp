@@ -7,6 +7,8 @@
 
 #include "PhysicsMgr.h"
 
+std::map<btCollisionObject*, Entity381*> PhysicsMgr::colliders;
+
 PhysicsMgr::PhysicsMgr(Engine *ref) : Mgr(ref)
 {
 	baseGravity = Ogre::Vector3(0, -9.8*15, 0);
@@ -42,7 +44,7 @@ void PhysicsMgr::Tick(float dt)
     //Update the physics
     physWorld->stepSimulation(dt, 15);
 		physWorld->performDiscreteCollisionDetection();
-/*
+
     int numManifolds = physWorld->getDispatcher()->getNumManifolds();
     for (int i = 0; i < numManifolds; i++)
     {
@@ -50,15 +52,14 @@ void PhysicsMgr::Tick(float dt)
         const btCollisionObject* obA = contactManifold->getBody0();
         const btCollisionObject* obB = contactManifold->getBody1();
 
-        //TODO update for Entity381 Physics aspect
-		//PhysObject* physObA = PhysObject::btToPhysObject (obA);
-		//PhysObject* physObB = PhysObject::btToPhysObject (obB);
-    	//contactManifold->refreshContactPoints(obA->getWorldTransform(), obB->getWorldTransform());
+        //check if any collisions have occurred, and send message
+		Entity381* physObA = btToPhysObject(obA);
+		Entity381* physObB = btToPhysObject(obB);
+    	contactManifold->refreshContactPoints(obA->getWorldTransform(), obB->getWorldTransform());
 
-			//if (physObA != NULL && physObB != NULL)
-				//physObA -> OnCollisionDetected (physObB);
+			if (physObA != NULL && physObB != NULL)
+				physObA->onCollision(physObB);
     }
- */
 }
 
 void PhysicsMgr::Stop()
@@ -98,7 +99,16 @@ void PhysicsMgr::makePlane(Ogre::Vector3 n, float distance)
 	physWorld->addRigidBody(planeCollider);
 }
 
+Entity381* PhysicsMgr::btToPhysObject(const btCollisionObject* obj)
+{
+	std::map<btCollisionObject*,Entity381*>::iterator it;
 
+	it = colliders.find((btCollisionObject*)obj);
+	if (it != colliders.end())
+		return it -> second;
+
+	return NULL;
+}
 
 
 

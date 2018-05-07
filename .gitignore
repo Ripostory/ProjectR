@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# Ogre logs
+*.log
+
 # Compiled Object files
 *.slo
 *.lo

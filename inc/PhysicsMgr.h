@@ -27,6 +27,8 @@
 class PhysicsMgr : public Mgr
 {
 public:
+	static std::map<btCollisionObject*, Entity381*> colliders;
+
 	PhysicsMgr(Engine *ref);
 	~PhysicsMgr();
 	virtual void Init();
@@ -34,6 +36,7 @@ public:
 	virtual void Tick(float dt);
 	virtual void Stop();
 
+	Entity381* btToPhysObject(const btCollisionObject*);
 	Ogre::Vector3 getGravity();
 	void setGravity(Ogre::Vector3);
 	void makePlane(Ogre::Vector3 normal, float distance);
