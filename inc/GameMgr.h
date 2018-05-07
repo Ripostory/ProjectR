@@ -37,6 +37,7 @@ public:
 private:
 	void rotateCam(float degrees, Ogre::Vector3 dir);
 	bool winCondition;
+	unsigned int turnCounter;
 };
 
 #endif /* GAMEMGR_H_ */
