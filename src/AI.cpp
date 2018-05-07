@@ -127,7 +127,6 @@ std::cout << "On same x plane" << std::endl;
 		else{
 				if (targetEntity->position.y < -550){
 					//Intercept
-<<<<<<< HEAD
 					if(!isAware)
 					{
 						onSpot();
@@ -135,16 +134,13 @@ std::cout << "On same x plane" << std::endl;
 					isAware = true;
 
 					std::cout << "On same plane" << std::endl;
-=======
-					//std::cout << "On same plane" << std::endl;
->>>>>>> 019e8c7dd16f90763bb6c9222969f99030e435e0
-										Ogre::Vector3 difference = Ogre::Vector3(targetEntity->position.x,
-												-600,
-												targetEntity->position.z) - entity->position;
-										//std::cout << difference.x << " " << difference.z << std::endl;
+					Ogre::Vector3 difference = Ogre::Vector3(targetEntity->position.x,
+							-600,
+							targetEntity->position.z) - entity->position;
+					//std::cout << difference.x << " " << difference.z << std::endl;
 
-										entity->desiredHeading = FixAngle(Ogre::Math::ATan2(difference.x, difference.z).valueDegrees());
-										entity->desiredSpeed = entity->maxSpeed;
+					entity->desiredHeading = FixAngle(Ogre::Math::ATan2(difference.x, difference.z).valueDegrees());
+					entity->desiredSpeed = entity->maxSpeed;
 				}
 				else
 				{
