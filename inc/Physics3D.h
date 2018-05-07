@@ -30,6 +30,7 @@ public:
     void setCollisionMesh(int capCylCone, float, float);
     void setProperties(float mass, float friction, float restitution);
     void setDamping(float, float);
+    Entity381* raycast(Ogre::Vector3 origin, Ogre::Vector3 direction, bool localNormal = true);
 
 protected:
     Ogre::Vector3 btToOgre(btVector3);

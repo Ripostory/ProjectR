@@ -44,7 +44,6 @@ void Physics3D::Tick(float dt){
 	  {
 		  physics->getMotionState()->getWorldTransform(transform);
 
-		  //TODO add more functionality
 		  if(entity->mass != 0){
 		  entity->position = btToOgre(transform.getOrigin());
 		  }
@@ -264,6 +263,21 @@ void Physics3D::initPhysics()
 
 	//add to physics collider callback
 	entity->engine->physicsMgr->colliders.insert(std::pair<btCollisionObject*, Entity381*> (physics, entity));
+}
+
+Entity381* Physics3D::raycast(Ogre::Vector3 origin, Ogre::Vector3 direction, bool localNormal)
+{
+	btCollisionWorld::ClosestRayResultCallback	closestResults(ogreToBt(origin), ogreToBt(direction));
+	entity->engine->physicsMgr->physWorld->rayTest(ogreToBt(origin), ogreToBt(direction), closestResults);
+
+	if (closestResults.hasHit()) {
+		Entity381* hit = entity->engine->physicsMgr->btToPhysObject(closestResults.m_collisionObject);
+		//call raycast on object
+		hit->onRaycastHit();
+		return hit;
+	}
+
+	return NULL;
 }
 
 

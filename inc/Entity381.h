@@ -54,7 +54,7 @@ public:
 
   //physics collision function
   virtual void onCollision(Entity381*);
-
+  virtual void onRaycastHit();
 
   //sound
   std::string soundFile;

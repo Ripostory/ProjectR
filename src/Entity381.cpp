@@ -96,6 +96,12 @@ void Entity381::onCollision(Entity381* ref)
 
 }
 
+void Entity381::onRaycastHit()
+{
+	//object was hit by a ray
+	std::cout << "Oof, " << this->name << " was hit" << std::endl;
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------
 DDG51::DDG51(Engine *engine, Ogre::Vector3 pos, int ident):
 		Entity381(engine, pos, ident, 10.0f){
