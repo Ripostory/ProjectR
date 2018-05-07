@@ -89,6 +89,13 @@ void Entity381::Tick(float dt){
 	}
 }
 
+void Entity381::onCollision(Entity381* ref)
+{
+	//a collision has been detected with ref
+	std::cout << this->name << " collided with object " << ref->name << std::endl;
+
+}
+
 //-------------------------------------------------------------------------------------------------------------------------------
 DDG51::DDG51(Engine *engine, Ogre::Vector3 pos, int ident):
 		Entity381(engine, pos, ident, 10.0f){

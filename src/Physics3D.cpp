@@ -23,6 +23,7 @@ Physics3D::~Physics3D() {
 	//remove self
 	if (physics != NULL)
 	{
+		entity->engine->physicsMgr->colliders.erase(physics);
 		entity->engine->physicsMgr->physWorld->removeRigidBody(physics);
 	}
 
@@ -32,6 +33,8 @@ Physics3D::~Physics3D() {
 		shape = NULL;
 	}
 	entity->mass = 0.0f;
+
+	//remove from world
 }
 
 
@@ -258,6 +261,9 @@ void Physics3D::initPhysics()
 	physics = new btRigidBody(objCI);
 	entity->engine->physicsMgr->physWorld->addRigidBody(physics);
 	physics->setActivationState(DISABLE_DEACTIVATION);
+
+	//add to physics collider callback
+	entity->engine->physicsMgr->colliders.insert(std::pair<btCollisionObject*, Entity381*> (physics, entity));
 }
 
 

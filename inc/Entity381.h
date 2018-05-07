@@ -52,6 +52,9 @@ public:
   float restitution;
   bool didSelectSoundPlay;
 
+  //physics collision function
+  virtual void onCollision(Entity381*);
+
 
   //sound
   std::string soundFile;
