@@ -4,7 +4,6 @@
 #include <vector>
 #include <Mgr.h>
 #include <Entity381.h>
-#include <FlyingEntity381.h>
 #include <Types381.h>
 
 class EntityMgr: public Mgr {
@@ -14,17 +13,16 @@ public:
 
   //Engine *engine;
 
-  std::vector<Entity381*> entities;
+  std::vector<Entity381*> entities, levels;
   Entity381* selectedEntity;
-  FlyingEntity381* selectedFlyingEntity;
   int selectedEntityIndex;
-
+  int lvl;
 
   //Ogre::SceneManager *sceneMgr;
 
   void CreateEntityOfTypeAtPosition(EntityTypes type, Ogre::Vector3 pos);
+  void CreateLevel(EntityTypes type, Ogre::Vector3 pos, std::string meshName);
   void SelectNextEntity();
-  void SetSelectedFlyingEntity();
   void Select(int index);
 
   void Tick(float dt);

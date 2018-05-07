@@ -75,36 +75,15 @@ protected:
 
 class Level: public Entity381 {
 public:
-	Level(Engine *engine, Ogre::Vector3 pos, int identity);
+	Level(Engine *engine, Ogre::Vector3 pos, int identity, std::string meshName);
 	virtual ~Level();
 
 };
 
-class DDG51: public Entity381 {
+class Player: public Entity381 {
 public:
-	DDG51(Engine *engine, Ogre::Vector3 pos, int identity);
-	virtual ~DDG51();
-
-};
-
-class SpeedBoat: public Entity381 {
-public:
-	SpeedBoat(Engine *engine, Ogre::Vector3 pos, int identity);
-	virtual ~SpeedBoat();
-
-};
-
-class Frigate: public Entity381 {
-public:
-	Frigate(Engine *engine, Ogre::Vector3 pos, int identity);
-	virtual ~Frigate();
-
-};
-
-class Alien: public Entity381 {
-public:
-	Alien(Engine *engine, Ogre::Vector3 pos, int identity);
-	virtual ~Alien();
+	Player(Engine *engine, Ogre::Vector3 pos, int identity);
+	virtual ~Player();
 
 };
 

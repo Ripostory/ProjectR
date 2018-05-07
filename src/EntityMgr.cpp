@@ -11,8 +11,8 @@
 EntityMgr::EntityMgr(Engine *eng): Mgr(eng){
 	selectedEntity = 0;
 	count = 0;
+	lvl = 0;
 	selectedEntityIndex = -1;
-	selectedFlyingEntity = 0;
 }
 
 EntityMgr::~EntityMgr(){
@@ -34,16 +34,6 @@ void EntityMgr::SelectNextEntity(){
 	SetSelectedFlyingEntity();*/
 }
 
-void EntityMgr::SetSelectedFlyingEntity(){
-	FlyingEntity381 *tmp = dynamic_cast<FlyingEntity381 *>(selectedEntity);
-	if(tmp != 0){
-		selectedFlyingEntity = tmp;
-	}	else {
-		selectedFlyingEntity = 0;
-	}
-}
-
-
 void EntityMgr::Select(int i){
 	if(i >= 0 && i < count){
 		if(selectedEntity != 0)
@@ -51,7 +41,6 @@ void EntityMgr::Select(int i){
 		selectedEntityIndex = i;
 		selectedEntity = entities[i];
 		selectedEntity->isSelected = true;
-		SetSelectedFlyingEntity();
 	}
 }
 
@@ -61,35 +50,17 @@ void EntityMgr::Select(int i){
 void EntityMgr::CreateEntityOfTypeAtPosition(EntityTypes entType, Ogre::Vector3 pos){
 
 	Entity381 * ent;
-	switch(entType){
-	case DDG51Type:
+	switch(entType)
+	{
+	case PlayerType:
 		//CreateDDG51(pos);
-		ent = (Entity381 *) ( new DDG51(engine, pos, count++));
-		break;
-	case CarrierType:
-//		CreateCarrier(pos);
-		ent = (Entity381 *) (new Level(engine, pos, count++));
-		break;
-	case SpeedBoatType:
-		//CreateSpeedBoat(pos);
-		ent =  (Entity381 *) (new SpeedBoat(engine, pos, count++));
-		break;
-	case FrigateType:
-		//CreateFrigate(pos);
-		ent = (Entity381 *) (new Frigate(engine, pos, count++));
-		break;
-	case AlienType:
-		//CreateAlien(pos);
-		ent = (Entity381 *) (new Alien(engine, pos, count++));
-		break;
-	case BansheeType:
-		ent = (Entity381 *) ((FlyingEntity381*) (new Banshee(engine, pos, count++)));
+		ent = (Entity381 *) ( new Player(engine, pos, count++));
 		break;
 	case PatrolerType:
 		ent = (Entity381 *) (new Patroler(engine, pos, count++, {0,1,1}));
 		break;
 	default:
-		ent = (Entity381*) (new DDG51(engine, pos, count++));//CreateEntity("robot.mesh", pos);
+		ent = (Entity381*) (new Player(engine, pos, count++));//CreateEntity("robot.mesh", pos);
 		break;
 	}
 	ent->Init();
@@ -97,8 +68,26 @@ void EntityMgr::CreateEntityOfTypeAtPosition(EntityTypes entType, Ogre::Vector3 
 
 }
 
+void EntityMgr::CreateLevel(EntityTypes type, Ogre::Vector3 pos, std::string meshName)
+{
+	Entity381* ent;
+	if(type == LevelType)
+	{
+		//creates Level
+		ent = (Entity381 *) (new Level(engine, pos, lvl, meshName));
+	}
+
+	if(lvl == 0)
+	{
+		ent->Init();
+	}
+	levels.push_back(ent);
+	lvl++;
+}
+
 void EntityMgr::Tick(float dt){
 	for(int i = 0; i < count; i++){
 		entities[i]->Tick(dt);
 	}
 }
+

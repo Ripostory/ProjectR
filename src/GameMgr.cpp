@@ -15,6 +15,7 @@
 #include <UiMgr.h>
 #include <iostream>
 #include <Types381.h>
+#include <Entity381.h>
 
 #include <OgreOverlay.h>
 #include <OgreSceneNode.h>
@@ -67,8 +68,8 @@ void GameMgr::LoadLevel(){
 
 void GameMgr::MakeEntities(){
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
-	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type, pos);
-	engine->entityMgr->CreateEntityOfTypeAtPosition(CarrierType, pos);
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, pos);
+	engine->entityMgr->CreateLevel(LevelType, pos, "Room.mesh");
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
 	//engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType, pos);
 	engine->entityMgr->SelectNextEntity(); //sets selection
@@ -134,6 +135,16 @@ void GameMgr::playerWon()
 		winCondition = true;
 		engine->uiMgr->openTextBox( "Player", "Level 1 completed!");
 		engine->uiMgr->openTextBox( "Player", "Press start to restart level");
+
+		if(engine->entityMgr->lvl == 2)
+		{
+			engine->uiMgr->openTextBox("GAME", "YOU ESCAPED!!");
+		}
+		else
+		{
+			//engine->entityMgr->lvl++;
+			//engine->entityMgr->levels[engine->entityMgr->lvl]->Init();
+		}
 	}
 }
 

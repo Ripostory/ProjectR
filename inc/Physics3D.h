@@ -8,7 +8,6 @@
 #ifndef PHYSICS3D_H_
 #define PHYSICS3D_H_
 
-#include <FlyingEntity381.h>
 #include <Physics2D.h>
 #include <bullet/btBulletDynamicsCommon.h>
 #include <bullet/btBulletCollisionCommon.h>

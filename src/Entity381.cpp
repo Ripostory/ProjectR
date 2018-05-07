@@ -90,11 +90,11 @@ void Entity381::Tick(float dt){
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-DDG51::DDG51(Engine *engine, Ogre::Vector3 pos, int ident):
+Player::Player(Engine *engine, Ogre::Vector3 pos, int ident):
 		Entity381(engine, pos, ident, 10.0f){
 
-	meshfilename = "ddg51.mesh";
-	entityType = DDG51Type;
+	meshfilename = "Player.mesh";
+	entityType = PlayerType;
 	this->minSpeed = 0;
 	this->maxSpeed = 16.0f;//meters per second...
 	this->acceleration = 5.0f; // fast
@@ -102,68 +102,26 @@ DDG51::DDG51(Engine *engine, Ogre::Vector3 pos, int ident):
 	std::cout << "Created: " << this->name << std::endl;
 }
 
-DDG51::~DDG51(){
+Player::~Player(){
 
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------
-Level::Level(Engine *engine, Ogre::Vector3 pos, int ident):
+Level::Level(Engine *engine, Ogre::Vector3 pos, int ident, std::string meshName):
 		Entity381(engine, pos, ident, 10.0f){
-	meshfilename = "Room.mesh";
-	entityType = CarrierType;
+	meshfilename = meshName;
+	entityType = LevelType;
 	physType = PHYS_S_MESH;
 }
 
 Level::~Level(){
 
 }
-//-------------------------------------------------------------------------------------------------------------------------------
-
-SpeedBoat::SpeedBoat(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident, 10.0f){
-	meshfilename = "Space.mesh";
-	entityType = SpeedBoatType;
-	physType = PHYS_S_MESH;
-}
-
-SpeedBoat::~SpeedBoat(){
-
-}
-//-------------------------------------------------------------------------------------------------------------------------------
-
-Frigate::Frigate(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident, 10.0f){
-	meshfilename = "sleek.mesh";
-	entityType = FrigateType;
-	this->minSpeed = 0;
-	this->maxSpeed = 15.0f;//meters per second...
-	this->acceleration = 5.0f; // slow
-	this->turnRate = 20.0f; //2 degrees per second
-}
-
-Frigate::~Frigate(){
-
-}
 
 //-------------------------------------------------------------------------------------------------------------------------------
-Alien::Alien(Engine *engine, Ogre::Vector3 pos, int ident):
-		Entity381(engine, pos, ident, 10.0f){
-	meshfilename = "alienship.mesh";
-	entityType = AlienType;
-	this->minSpeed = 0;
-	this->maxSpeed = 50.0f;//meters per second...
-	this->acceleration = 10.0f; // slow
-	this->turnRate = 40.0f; //2 degrees per second
-}
-
-Alien::~Alien(){
-
-}
-//-------------------------------------------------------------------------------------------------------------------------------
-
 Patroler::Patroler(Engine *engine, Ogre::Vector3 pos, int ident, Ogre::Vector3 planeInfo):
 		Entity381(engine, pos, ident, 0.0f){
-	meshfilename = "ddg51.mesh";
+	meshfilename = "robot.mesh";
 	entityType = PatrolerType;
 	this->minSpeed = 0;
 	this->maxSpeed = 50.0f;//meters per second...
@@ -173,6 +131,41 @@ Patroler::Patroler(Engine *engine, Ogre::Vector3 pos, int ident, Ogre::Vector3 p
 
 	UnitAI* ai = new UnitAI(this, this, engine);
 	aspects.push_back((Aspect*) ai);
+
+	if(!planeInfo.x)
+	{
+		if(this->position.x > 550)
+		{
+			this->orientation = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3(0, 0, 1));
+
+		}
+		else
+		{
+			this->orientation = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(0, 0, 1));
+		}
+	}
+	else if(!planeInfo.y)
+	{
+		if(this->position.y > 550)
+		{
+			this->orientation = Ogre::Quaternion(Ogre::Degree(180), Ogre::Vector3(1, 0, 0));
+		}
+		else
+		{
+			this->orientation = Ogre::Quaternion(Ogre::Degree(0), Ogre::Vector3(1, 0, 0));
+		}
+	}
+	else if(!planeInfo.z)
+	{
+		if(this->position.z > 550)
+		{
+			this->orientation = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3(1, 0, 0));
+		}
+		else
+		{
+			this->orientation = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(1, 0, 0));
+		}
+	}
 
 	//Physics2D* phx = new Physics2D(this);
 	//aspects.push_back((Aspect*) phx);

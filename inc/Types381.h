@@ -2,13 +2,10 @@
 #define __TYPES381_h_
 
 enum EntityTypes {
-	DDG51Type,
-	CarrierType,
-	SpeedBoatType,
-	FrigateType,
-	AlienType,
-	BansheeType,
+	PlayerType,
+	LevelType,
 	PatrolerType,
+	TurretType,
 	None,
 };
 

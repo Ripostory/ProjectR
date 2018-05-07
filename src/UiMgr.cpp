@@ -170,6 +170,7 @@ void UiMgr::buttonHit(OgreBites::Button *b){
     	openTextBox("Game", "Be careful though there are pirates walking about and a security system that's less than friendly.");
     	openTextBox("Game", "Good Luck!");
 
+
     }
     else if(b->getName()=="Next"){
     	if(dialogue.empty()){
@@ -192,28 +193,6 @@ void UiMgr::buttonHit(OgreBites::Button *b){
         	dialogue.pop();
         	name.pop();
     	}
-    }
-
-}
-
-void UiMgr::itemSelected(OgreBites::SelectMenu *m){
-    Ogre::Vector3 pos;
-    pos.x = 0;
-    pos.y = 0;
-    pos.z = 100;
-    switch(m->getSelectionIndex()){
-    case 1:
-    	engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType,pos);
-    	break;
-    case 2:
-    	engine->entityMgr->CreateEntityOfTypeAtPosition(DDG51Type,pos);
-    	break;
-    case 3:
-    	engine->entityMgr->CreateEntityOfTypeAtPosition(CarrierType,pos);
-    	mLabel->setCaption("Carrier has Arrived!");
-    	break;
-    default:
-    	break;
     }
 
 }

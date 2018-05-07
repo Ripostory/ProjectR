@@ -9,7 +9,6 @@ CPP_SRCS += \
 ../src/Engine.cpp \
 ../src/Entity381.cpp \
 ../src/EntityMgr.cpp \
-../src/FlyingEntity381.cpp \
 ../src/GameMgr.cpp \
 ../src/GfxMgr.cpp \
 ../src/InputMgr.cpp \
@@ -28,7 +27,6 @@ OBJS += \
 ./src/Engine.o \
 ./src/Entity381.o \
 ./src/EntityMgr.o \
-./src/FlyingEntity381.o \
 ./src/GameMgr.o \
 ./src/GfxMgr.o \
 ./src/InputMgr.o \
@@ -47,7 +45,6 @@ CPP_DEPS += \
 ./src/Engine.d \
 ./src/Entity381.d \
 ./src/EntityMgr.d \
-./src/FlyingEntity381.d \
 ./src/GameMgr.d \
 ./src/GfxMgr.d \
 ./src/InputMgr.d \
@@ -65,7 +62,7 @@ CPP_DEPS += \
 src/%.o: ../src/%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/media/nog/Projects/_Projects/CS381_Projects/ProjectR/inc" -I/usr/local/include/OGRE -I/usr/local/include/OGRE/Overlay -I/usr/include/ois -I/usr/include/bullet -I/usr/include/OIS -I/usr/include/AL -I/usr/include/audio -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	g++ -I"/home/ryanfox/workspace 2.0/ProjectR-bust/inc" -I/usr/local/include/OGRE -I/usr/local/include/OGRE/Overlay -I/usr/include/ois -I/usr/include/bullet -I/usr/include/OIS -I/usr/include/AL -I/usr/include/audio -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
