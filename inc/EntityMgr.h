@@ -13,7 +13,7 @@ public:
 
   //Engine *engine;
 
-  std::vector<Entity381*> entities, levels;
+  std::vector<Entity381*> entities;
   Entity381* selectedEntity;
   int selectedEntityIndex;
   int lvl;
@@ -21,9 +21,11 @@ public:
   //Ogre::SceneManager *sceneMgr;
 
   void CreateEntityOfTypeAtPosition(EntityTypes type, Ogre::Vector3 pos);
-  void CreateLevel(EntityTypes type, Ogre::Vector3 pos, std::string meshName);
+  void CreateLevel(std::string meshName);
+  void RemoveEntity(Entity381 *ref);
   void SelectNextEntity();
   void Select(int index);
+  void ClearEntities();
 
   void Tick(float dt);
 
@@ -31,11 +33,6 @@ protected:
 
 private:
   void CreateEntity(std::string meshfilename, Ogre::Vector3 pos);
-  void CreateDDG51(Ogre::Vector3 pos);
-  void CreateCarrier(Ogre::Vector3 pos);
-  void CreateSpeedBoat(Ogre::Vector3 pos);
-  void CreateFrigate(Ogre::Vector3 pos);
-  void CreateAlien(Ogre::Vector3 pos);
   int count;
 
 };

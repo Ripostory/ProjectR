@@ -63,7 +63,24 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident, float newMass
 }
 
 Entity381::~Entity381(){
+	std::cout << "Clearing entity " << name << std::endl;
 
+	//hide
+	sceneNode->setVisible(false,true);
+	ogreEntity->setVisible(false);
+
+	//remove from world
+	engine->gfxMgr->mSceneMgr->destroySceneNode(sceneNode);
+	engine->gfxMgr->mSceneMgr->destroyEntity(ogreEntity);
+
+	//delete all aspects
+	std::vector<Aspect*>::iterator it;
+	for (it = aspects.begin(); it != aspects.end(); it++)
+	{
+		delete *it;
+	}
+
+	aspects.clear();
 }
 
 void Entity381::Init(){

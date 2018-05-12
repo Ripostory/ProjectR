@@ -68,26 +68,44 @@ void EntityMgr::CreateEntityOfTypeAtPosition(EntityTypes entType, Ogre::Vector3 
 
 }
 
-void EntityMgr::CreateLevel(EntityTypes type, Ogre::Vector3 pos, std::string meshName)
-{
-	Entity381* ent;
-	if(type == LevelType)
-	{
-		//creates Level
-		ent = (Entity381 *) (new Level(engine, pos, lvl, meshName));
-	}
-
-	if(lvl == 0)
-	{
-		ent->Init();
-	}
-	levels.push_back(ent);
-	lvl++;
-}
-
 void EntityMgr::Tick(float dt){
 	for(int i = 0; i < count; i++){
 		entities[i]->Tick(dt);
 	}
+}
+
+void EntityMgr::RemoveEntity(Entity381 *ref)
+{
+	//search for entity
+	std::vector<Entity381*>::iterator it;
+	for (it = entities.begin(); it != entities.end(); it++)
+	{
+		if (*it == ref)
+		{
+			delete ref;
+			entities.erase(it);
+			break;
+		}
+	}
+}
+
+void EntityMgr::ClearEntities()
+{
+	std::vector<Entity381*>::iterator it;
+	for (it = entities.begin(); it != entities.end(); it++)
+	{
+		delete *it;
+		*it = NULL;
+	}
+
+	entities.clear();
+	count = 0;
+}
+
+void EntityMgr::CreateLevel(std::string meshName)
+{
+	Entity381 *ent = (Entity381 *) (new Level(engine, Ogre::Vector3(), count++, meshName));
+	entities.push_back(ent);
+	ent->Init();
 }
 

@@ -72,9 +72,8 @@ void GameMgr::LoadLevel(){
 void GameMgr::MakeEntities(){
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, pos);
-	engine->entityMgr->CreateLevel(LevelType, pos, "test.mesh");
-	engine->entityMgr->CreateLevel(LevelType, pos, "Room.mesh");
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
+	engine->entityMgr->CreateLevel("test.mesh");
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
 	//engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType, pos);
 	engine->entityMgr->SelectNextEntity(); //sets selection
 }
@@ -154,7 +153,11 @@ void GameMgr::playerWon()
 		else
 		{
 			engine->entityMgr->lvl++;
-			engine->entityMgr->levels[engine->entityMgr->lvl]->Init();
+			engine->entityMgr->ClearEntities();
+			engine->entityMgr->CreateLevel("Room.mesh");
+			engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3());
+			engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
+			winCondition = false;
 		}
 	}
 }

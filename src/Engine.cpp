@@ -97,5 +97,14 @@ void Engine::Cleanup(){
 	gameMgr->Stop();
 	physicsMgr->Stop();
 	soundMgr->Stop();
+
+	//delete
+	delete inputMgr;
+	delete gfxMgr;
+	delete entityMgr;
+	delete gameMgr;
+	delete physicsMgr;
+	delete soundMgr;
+
 }
 
