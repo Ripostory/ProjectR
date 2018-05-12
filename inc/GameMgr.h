@@ -34,6 +34,11 @@ public:
 	void turnCamY(bool isPositive);
 	void turnCamZ(bool isPositive);
 	void playerWon();
+
+	void loadLevel1();
+	void loadLevel2();
+	void loadLevel3();
+	void loadLevel4();
 private:
 	void rotateCam(float degrees, Ogre::Vector3 dir);
 	bool winCondition;

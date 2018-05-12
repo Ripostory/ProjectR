@@ -37,6 +37,8 @@ protected:
 
     void buttonHit(OgreBites::Button *b);
 
+    bool gameStarted;
+
 public:
 
 	UiMgr(Engine *engine);

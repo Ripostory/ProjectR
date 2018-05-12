@@ -70,12 +70,6 @@ void GameMgr::LoadLevel(){
 
 
 void GameMgr::MakeEntities(){
-	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, pos);
-	engine->entityMgr->CreateLevel("test.mesh");
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
-	//engine->entityMgr->CreateEntityOfTypeAtPosition(SpeedBoatType, pos);
-	engine->entityMgr->SelectNextEntity(); //sets selection
 }
 
 
@@ -134,30 +128,65 @@ void GameMgr::rotateCam(float degrees, Ogre::Vector3 axis)
 	turnCounter++;
 }
 
+void GameMgr::loadLevel1()
+{
+	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, pos);
+	engine->entityMgr->SelectNextEntity();
+	engine->entityMgr->CreateLevel("test.mesh");
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
+}
+
+void GameMgr::loadLevel2()
+{
+	engine->entityMgr->lvl++;
+	engine->entityMgr->ClearEntities();
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
+	engine->entityMgr->SelectNextEntity();
+	engine->entityMgr->CreateLevel("Room.mesh");
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
+}
+
+void GameMgr::loadLevel3()
+{
+}
+
+void GameMgr::loadLevel4()
+{
+}
+
 void GameMgr::playerWon()
 {
+	int currentLvl = engine->entityMgr->lvl;
+	int finalLvl = 1;
+
 	if (!winCondition)
 	{
 		winCondition = true;
-		engine->uiMgr->openTextBox( "Player", "Level 1 completed!");
-		engine->uiMgr->openTextBox( "Player", "Press start to restart level");
 
-		if(engine->entityMgr->lvl == 1)
+		if(currentLvl == finalLvl)
 		{
+			engine->entityMgr->ClearEntities();
 			engine->uiMgr->openTextBox("GAME", "YOU ESCAPED!!");
 			engine->uiMgr->openTextBox("Project Arr Credits", "Ronn(With Two Ns) Quijada:\n Sound\n Physics\n Camera\n Master Computer");
 			engine->uiMgr->openTextBox("Project Arr Credits", "Brianna Blain-Castelli:\n Artificial Intelligence\n Models\n User Interface\n Debugger");
 			engine->uiMgr->openTextBox("Project Arr Credits", "Ryan Fox:\n Artificial Intelligence\n Splash Screen\n User Interface\n Ideas Man");
-
 		}
 		else
 		{
-			engine->entityMgr->lvl++;
-			engine->entityMgr->ClearEntities();
-			engine->entityMgr->CreateLevel("Room.mesh");
-			engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3());
-			engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
-			winCondition = false;
+			if (currentLvl == 0)
+			{
+				engine->uiMgr->openTextBox( "Player", "Level 1 completed!");
+				engine->uiMgr->openTextBox( "Player", "Onto the next");
+				loadLevel2();
+				winCondition = false;
+			}
+			else if (currentLvl == 100)
+			{
+				loadLevel3();
+				winCondition = false;
+
+			}
 		}
 	}
 }

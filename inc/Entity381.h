@@ -67,7 +67,7 @@ public:
 
   void Init();
 
-  void Tick(float dt);
+  virtual void Tick(float dt);
 
 protected:
 
@@ -86,6 +86,7 @@ public:
 class Player: public Entity381 {
 public:
 	Player(Engine *engine, Ogre::Vector3 pos, int identity);
+	void Tick(float dt);
 	virtual ~Player();
 
 };

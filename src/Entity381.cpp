@@ -65,10 +65,6 @@ Entity381::Entity381(Engine *engine, Ogre::Vector3 pos, int ident, float newMass
 Entity381::~Entity381(){
 	std::cout << "Clearing entity " << name << std::endl;
 
-	//hide
-	sceneNode->setVisible(false,true);
-	ogreEntity->setVisible(false);
-
 	//remove from world
 	engine->gfxMgr->mSceneMgr->destroySceneNode(sceneNode);
 	engine->gfxMgr->mSceneMgr->destroyEntity(ogreEntity);
@@ -98,18 +94,12 @@ void Entity381::Tick(float dt){
 	for(unsigned int i = 0; i < aspects.size(); i++){
 		aspects[i]->Tick(dt);
 	}
-
-	//check if win condition satisfied
-	if (position.length() > 1300)
-	{
-		engine->gameMgr->playerWon();
-	}
 }
 
 void Entity381::onCollision(Entity381* ref)
 {
 	//a collision has been detected with ref
-	std::cout << this->name << " collided with object " << ref->name << std::endl;
+	//std::cout << this->name << " collided with object " << ref->name << std::endl;
 
 }
 
@@ -132,6 +122,18 @@ Player::Player(Engine *engine, Ogre::Vector3 pos, int ident):
 	std::cout << "Created: " << this->name << std::endl;
 }
 
+void Player::Tick(float dt)
+{
+	Entity381::Tick(dt);
+
+	//check if win condition satisfied
+	if (position.length() > 1300)
+	{
+		engine->gameMgr->playerWon();
+	}
+
+}
+
 Player::~Player(){
 
 }
@@ -145,7 +147,6 @@ Level::Level(Engine *engine, Ogre::Vector3 pos, int ident, std::string meshName)
 }
 
 Level::~Level(){
-
 }
 
 //-------------------------------------------------------------------------------------------------------------------------------

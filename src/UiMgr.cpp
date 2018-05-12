@@ -10,6 +10,7 @@
 #include <GfxMgr.h>
 #include <InputMgr.h>
 #include <EntityMgr.h>
+#include <GameMgr.h>
 #include <Types381.h>
 #include <OgreTextAreaOverlayElement.h>
 
@@ -36,6 +37,7 @@ void UiMgr::Init(){
     //
     mTextBox = NULL;
     mNext = NULL;
+    gameStarted = false;
 
     //mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     //mTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
@@ -82,7 +84,7 @@ void UiMgr::Tick(float dt){
 	mTrayMgr->refreshCursor();
 
 	//check if there are queued messages
-	if (!dialogue.empty())
+	if (!dialogue.empty() && gameStarted)
 	{
 		//check if another dialogue box is open
 		Interrupt = true;
@@ -144,6 +146,7 @@ bool UiMgr::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id){
 void UiMgr::buttonHit(OgreBites::Button *b){
     if(b->getName()=="MainMenu1")
     {
+    	gameStarted = true;
     	mTrayMgr->hideBackdrop();
     	//mTrayMgr->hideAll();
     	mTrayMgr->destroyAllWidgets();
@@ -151,7 +154,7 @@ void UiMgr::buttonHit(OgreBites::Button *b){
 
     	//load lvl
     	engine->entityMgr->lvl = 0;
-
+    	engine->gameMgr->loadLevel1();
 
     	//load textbox
     	mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", "GAME", 800, 150);

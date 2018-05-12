@@ -100,12 +100,14 @@ void EntityMgr::ClearEntities()
 
 	entities.clear();
 	count = 0;
+	selectedEntity = 0;
 }
 
 void EntityMgr::CreateLevel(std::string meshName)
 {
-	Entity381 *ent = (Entity381 *) (new Level(engine, Ogre::Vector3(), count++, meshName));
-	entities.push_back(ent);
+	Entity381 *ent = (Entity381 *) (new Level(engine, Ogre::Vector3(0,0,0), count++, meshName));
+	std::cout << ent->position << std::endl;
 	ent->Init();
+	entities.push_back(ent);
 }
 

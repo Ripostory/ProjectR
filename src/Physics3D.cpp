@@ -145,7 +145,7 @@ void Physics3D::setCollisionMesh(int mesh, Ogre::String name)
 		}
 		delete shape;
 		shape = meshShape;
-		entity->engine->gfxMgr->mSceneMgr->destroyEntity(load);
+		//entity->engine->gfxMgr->mSceneMgr->destroyEntity(load);
 	}
 	else if (mesh == PHYS_S_MESH)
 	{
@@ -221,7 +221,7 @@ void Physics3D::setCollisionMesh(int mesh, Ogre::String name)
 		delete shape;
 		shape = new btBvhTriangleMeshShape(mesh, true);
 		isStatic = true;
-		entity->engine->gfxMgr->mSceneMgr->destroyEntity(load);
+		//entity->engine->gfxMgr->mSceneMgr->destroyEntity(load);
 	}
 	else
 	{
