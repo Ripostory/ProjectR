@@ -29,10 +29,15 @@ public:
 	Ogre::Quaternion baseOrientation;
 	float baseTime;
 	float animTime;
+	float zoom;
+	float currentZoom;
+	float zoomMin;
+	float zoomMax;
 
 	void turnCamX(bool isPositive);
 	void turnCamY(bool isPositive);
 	void turnCamZ(bool isPositive);
+	void addZoom(float dt);
 	void playerWon();
 
 	void loadLevel1();

@@ -27,6 +27,10 @@ GameMgr::GameMgr(Engine *engine): Mgr(engine) {
 	animTime = 0.1;
 	winCondition = false;
 	turnCounter = 0;
+	zoom = 45.0f;
+	zoomMin = 8.0f;
+	zoomMax = 45.0;
+	currentZoom = 45.0f;
 }
 
 GameMgr::~GameMgr() {
@@ -47,6 +51,7 @@ void GameMgr::Tick(float dt)
 	  Entity381 *ref = engine->entityMgr->selectedEntity;
 
 
+	  //update camera
 	  if (ref != NULL)
 	  {
 		  //move camera
@@ -71,10 +76,11 @@ void GameMgr::Tick(float dt)
 
 		  //move camera to new position
 		  engine->gfxMgr->mCamera->setPosition(finalPosition+1600);
-		  //engine->gfxMgr->mCamera->lookAt(finalPosition);
-		  std::cout << focus << finalPosition << std::endl;
 	  }
 
+	  //set camera zoom
+	  currentZoom += (zoom-currentZoom)/30;
+	  engine->gfxMgr->mCamera->setFOVy(Ogre::Degree(currentZoom));
 }
 
 void GameMgr::LoadLevel(){
@@ -158,6 +164,19 @@ void GameMgr::rotateCam(float degrees, Ogre::Vector3 axis)
 
 	//update turn counter
 	turnCounter++;
+}
+
+void GameMgr::addZoom(float dt)
+{
+	zoom += dt;
+	if (zoom > zoomMax)
+	{
+		zoom = zoomMax;
+	}
+	else if (zoom < zoomMin)
+	{
+		zoom = zoomMin;
+	}
 }
 
 void GameMgr::loadLevel1()

@@ -172,7 +172,11 @@ bool InputMgr::keyReleased(const OIS::KeyEvent& ke){
 }
 
 bool InputMgr::mouseMoved(const OIS::MouseEvent& me){
+    //check mouse scroll
+    engine->gameMgr->addZoom(me.state.Z.rel/100.0f);
+
     if (engine->uiMgr->mTrayMgr->injectMouseMove(me)) return true;
+
 	return true;
 }
 
@@ -180,7 +184,6 @@ bool InputMgr::mousePressed(const OIS::MouseEvent& me, OIS::MouseButtonID mid){
 	std::cout << "Mouse pressed" << std::endl;
     if (engine->uiMgr->mTrayMgr->injectMouseDown(me, mid)) return true;
 	if(OIS::MB_Left == mid){
-		std::cout << "Left mouse press" << std::endl;
 		//HandleMouseSelection(me);
 	}
 
