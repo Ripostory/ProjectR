@@ -193,7 +193,7 @@ void GameMgr::loadLevel2()
 	engine->entityMgr->ClearEntities();
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
-	engine->entityMgr->CreateLevel("test.mesh");
+	engine->entityMgr->CreateLevel("Level2.mesh");
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
 }
 
