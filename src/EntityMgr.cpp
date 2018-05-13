@@ -100,7 +100,8 @@ void EntityMgr::ClearEntities()
 
 	entities.clear();
 	count = 0;
-	selectedEntity = 0;
+	selectedEntity = NULL;
+	selectedEntityIndex = 0;
 }
 
 void EntityMgr::CreateLevel(std::string meshName)

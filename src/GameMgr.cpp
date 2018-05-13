@@ -43,6 +43,38 @@ void GameMgr::Tick(float dt)
 	 if (baseTime <= 1.0f)
 		 baseTime += dt/animTime;
 
+	  //move camera to follow point
+	  Entity381 *ref = engine->entityMgr->selectedEntity;
+
+
+	  if (ref != NULL)
+	  {
+		  //move camera
+		  Ogre::Vector3 focus = ref->position;
+
+		  //transform focus position to camera space
+		  Ogre::Quaternion rotate = cameraNode->getOrientation();
+		  Ogre::Matrix3 ref;
+		  rotate.normalise();
+		  rotate = rotate.Inverse();
+		  rotate.ToRotationMatrix(ref);
+
+		  focus = ref * focus;
+
+		  Ogre::Vector3 transformNormal(Ogre::Vector3(-1,-1,-1));
+		  transformNormal.normalise();
+		  Ogre::Vector3 origin(0,0,0);
+		  Ogre::Vector3 finalPosition = focus - origin;
+		  finalPosition.normalise();
+		  float dist = finalPosition.dotProduct(transformNormal);
+		  finalPosition = focus - dist*transformNormal;
+
+		  //move camera to new position
+		  engine->gfxMgr->mCamera->setPosition(finalPosition+1600);
+		  //engine->gfxMgr->mCamera->lookAt(finalPosition);
+		  std::cout << focus << finalPosition << std::endl;
+	  }
+
 }
 
 void GameMgr::LoadLevel(){
