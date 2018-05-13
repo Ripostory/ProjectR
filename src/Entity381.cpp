@@ -113,13 +113,14 @@ void Entity381::onRaycastHit()
 Player::Player(Engine *engine, Ogre::Vector3 pos, int ident):
 		Entity381(engine, pos, ident, 10.0f){
 
-	meshfilename = "Player.mesh";
+	meshfilename = "SpaceMan.mesh";
 	entityType = PlayerType;
 	this->minSpeed = 0;
 	this->maxSpeed = 16.0f;//meters per second...
 	this->acceleration = 5.0f; // fast
 	this->turnRate = 20.0f; //4 degrees per second
-	std::cout << "Created: " << this->name << std::endl;
+	Physics3D *ref = (Physics3D*) aspects[0];
+	ref->setProperties(60, 0.8, 0.6);
 }
 
 void Player::Tick(float dt)
@@ -144,6 +145,8 @@ Level::Level(Engine *engine, Ogre::Vector3 pos, int ident, std::string meshName)
 	meshfilename = meshName;
 	entityType = LevelType;
 	physType = PHYS_S_MESH;
+	Physics3D *ref = (Physics3D*) aspects[0];
+	ref->setProperties(0, 0.89, 0.3);
 }
 
 Level::~Level(){

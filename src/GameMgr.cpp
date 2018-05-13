@@ -27,10 +27,10 @@ GameMgr::GameMgr(Engine *engine): Mgr(engine) {
 	animTime = 0.1;
 	winCondition = false;
 	turnCounter = 0;
-	zoom = 45.0f;
+	zoom = 8.0f;
 	zoomMin = 8.0f;
 	zoomMax = 45.0;
-	currentZoom = 45.0f;
+	currentZoom = 8.0f;
 }
 
 GameMgr::~GameMgr() {
@@ -184,8 +184,7 @@ void GameMgr::loadLevel1()
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, pos);
 	engine->entityMgr->SelectNextEntity();
-	engine->entityMgr->CreateLevel("test.mesh");
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
+	engine->entityMgr->CreateLevel("Level1.mesh");
 }
 
 void GameMgr::loadLevel2()
@@ -194,8 +193,8 @@ void GameMgr::loadLevel2()
 	engine->entityMgr->ClearEntities();
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
-	engine->entityMgr->CreateLevel("Room.mesh");
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(600, -100, 0));
+	engine->entityMgr->CreateLevel("test.mesh");
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
 }
 
 void GameMgr::loadLevel3()
