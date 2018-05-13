@@ -179,8 +179,25 @@ void GameMgr::addZoom(float dt)
 	}
 }
 
+void GameMgr::resetOrientation()
+{
+	//reset gravity
+	Ogre::Vector3 base = engine->physicsMgr->baseGravity;
+	Ogre::Quaternion ref(Ogre::Degree(90), Ogre::Vector3(1,0,0));
+
+	//reset all orientations
+	baseOrientation = ref;
+	desiredOrientation = ref;
+	baseTime = 1.0f;
+
+	//reset gravity orientation
+	Ogre::Vector3 nDir = ref * base;
+	engine->physicsMgr->setGravity(nDir);
+}
+
 void GameMgr::loadLevel1()
 {
+	resetOrientation();
 	Ogre::Vector3 pos = Ogre::Vector3(0, 0, 0);
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, pos);
 	engine->entityMgr->SelectNextEntity();
@@ -194,11 +211,11 @@ void GameMgr::loadLevel2()
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
 	engine->entityMgr->CreateLevel("Level2.mesh");
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
 }
 
 void GameMgr::loadLevel3()
 {
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
 }
 
 void GameMgr::loadLevel4()
@@ -214,6 +231,7 @@ void GameMgr::playerWon()
 	{
 		winCondition = true;
 		engine->soundMgr->playClear();
+		resetOrientation();
 
 		if(currentLvl == finalLvl)
 		{

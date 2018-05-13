@@ -39,6 +39,7 @@ public:
 	void turnCamZ(bool isPositive);
 	void addZoom(float dt);
 	void playerWon();
+	void resetOrientation();
 
 	void loadLevel1();
 	void loadLevel2();

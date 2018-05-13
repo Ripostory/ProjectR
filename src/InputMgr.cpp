@@ -145,22 +145,22 @@ bool InputMgr::keyPressed(const OIS::KeyEvent& ke){
 
 		if (mKeyboard->isKeyDown(OIS::KC_A))
 		{
-			engine->gameMgr->turnCamY(true);
+			engine->gameMgr->turnCamZ(false);
 		}
 
 		if (mKeyboard->isKeyDown(OIS::KC_D))
 		{
-			engine->gameMgr->turnCamY(false);
+			engine->gameMgr->turnCamZ(true);
 		}
 
 		if (mKeyboard->isKeyDown(OIS::KC_E))
 		{
-			engine->gameMgr->turnCamZ(true);
+			engine->gameMgr->turnCamY(true);
 		}
 
 		if (mKeyboard->isKeyDown(OIS::KC_Q))
 		{
-			engine->gameMgr->turnCamZ(false);
+			engine->gameMgr->turnCamY(false);
 		}
 	}
 
