@@ -106,47 +106,16 @@ void SoundMgr::initialize(void){
         }
 	std::cout << "background music loaded" << std::endl;
 
-        initWatercraftSounds();
-
-        //load key press audio
-    	unsigned int kid;
-            //background music
-    	std::string selfilename = "assets/sounds/clong.wav";
-    	if (this->reserveAudio(selfilename, false, kid)){
-    		std::cout << "selection sound loaded" << std::endl;
-                    selectionSource = sourceInfo[kid].source;
-                    loadAudio(selfilename, kid);
-            }
-    	std::cout << "selection sound loaded" << std::endl;
+        //load all UI audio
+        loadStatic("assets/sounds/button.wav", selectionSource);
+        loadStatic("assets/sounds/tick.wav", textTick);
+        loadStatic("assets/sounds/shift.wav", buttonClick);
+        loadStatic("assets/sounds/clear.wav", levelClear);
 	return;
 
 }
 
 bool SoundMgr::initWatercraftSounds(){
-        //registering all sounds
-		std::string selectionFilename = "assets/sounds/takeYourOrder.wav";
-        std::string selection2Filename = "assets/sounds/GoodDay.wav";
-        //std::string createShipFilename = "assets/sounds/boatMoving.wav";
-        //std::string createBuildingFilename = "assets/sounds/clong.wav";
-        for(std::vector<Entity381 *>::const_iterator et = engine->entityMgr->entities.begin();
-        		et != engine->entityMgr->entities.end(); ++et)
-        	{
-            //this->registerBattleSound(et, battleFilename);
-            if (true){
-                if ((*et)->auioId == 1){
-                        this->registerSelection(**et, selection2Filename);
-                }
-                else{
-                        this->registerSelection(**et, selectionFilename);
-                }
-                //this->registerCreate(et, createShipFilename);
-            }
-            else{
-                //no selection sound for buildings right now
-                //this->registerCreate(et, createBuildingFilename);
-            }
-        }
-        return true;
 }
 
 void SoundMgr::enable(){
@@ -162,12 +131,17 @@ void SoundMgr::disable(){
 
 void SoundMgr::syncListenerToCamera(){
 	//position from camera scene node
-	Ogre::Vector3 cameraPosition = engine->gfxMgr->mCamera->getPosition();
-	this->position[0] = cameraPosition.x;
-	this->position[1] = cameraPosition.y;
-	this->position[2] = cameraPosition.z;
-	alListener3f(AL_POSITION, cameraPosition.x, cameraPosition.y, cameraPosition.z);
-	printError("Cannot set listener position");
+	Entity381 *ref = engine->entityMgr->selectedEntity;
+
+	if (ref != NULL)
+	{
+		Ogre::Vector3 cameraPosition = ref->position;
+		this->position[0] = cameraPosition.x;
+		this->position[1] = cameraPosition.y;
+		this->position[2] = cameraPosition.z;
+		alListener3f(AL_POSITION, cameraPosition.x, cameraPosition.y, cameraPosition.z);
+		printError("Cannot set listener position");
+	}
 
 	//Ogre::Vector3 cameraVelocity = engine->gfxMgr->cameraNode->velocity; // not set by graphics
 	this->velocity[0] = 0;
@@ -225,8 +199,6 @@ void SoundMgr::LoadLevel(void){
 
 	return;
 }
-double static tmpT = 0.0;
-bool static paused = false;
 
 
 void SoundMgr::attachSelectedNodeToSoundIndex(Entity381 *ent, unsigned int index){
@@ -243,6 +215,16 @@ void SoundMgr::Tick(float dtime){
 	syncListenerToCamera();
 
 	//dispatch any other sounds
+
+	//sync switch sound to camera
+	Entity381* ears = engine->entityMgr->selectedEntity;
+	if (ears != NULL)
+	{
+		this->setSoundPosition(selectionSource, ears->position);
+		this->setSoundPosition(buttonClick, ears->position);
+		this->setSoundPosition(levelClear, ears->position);
+		this->setSoundPosition(textTick, ears->position);
+	}
 }
 
 bool SoundMgr::playSelectionSound(Entity381 et){
@@ -494,8 +476,36 @@ std::string SoundMgr::getFQFNFromFilename(std::string filename){
 
 bool SoundMgr::playSelect()
 {
-	this->setSoundPosition(selectionSource,engine->gfxMgr->mCamera->getPosition());
 	return playAudio(selectionSource, true);
+}
+
+bool SoundMgr::playTick()
+{
+	return playAudio(textTick, true);
+}
+
+bool SoundMgr::playClear()
+{
+	return playAudio(levelClear, true);
+}
+
+bool SoundMgr::playClick()
+{
+	return playAudio(buttonClick, true);
+}
+
+bool SoundMgr::loadStatic(std::string filename, ALuint &source)
+{
+    //load key press audio
+	unsigned int kid;
+        //background music
+	if (this->reserveAudio(filename, false, kid)){
+		std::cout << "static sound loaded" << std::endl;
+                source = sourceInfo[kid].source;
+                loadAudio(filename, kid);
+                return true;
+        }
+	return false;
 }
 
 //specific to FastEcslsent------------------------------------------------------------------------------------
@@ -592,7 +602,7 @@ bool SoundMgr::loadStartBackground(){
 	alSourcef(this->backgroundMusicSource, AL_PITCH, 1);
 	printError("Source pitch");
 
-	alSourcef(this->backgroundMusicSource, AL_GAIN, 1);
+	alSourcef(this->backgroundMusicSource, AL_GAIN, 0.5);
 	printError("Source Gain");
 
 	alSource3f(this->backgroundMusicSource, AL_POSITION, 0, 0, 0);

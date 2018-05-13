@@ -214,6 +214,7 @@ void GameMgr::playerWon()
 	if (!winCondition)
 	{
 		winCondition = true;
+		engine->soundMgr->playClear();
 
 		if(currentLvl == finalLvl)
 		{

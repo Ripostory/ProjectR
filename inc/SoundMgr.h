@@ -59,6 +59,9 @@ class Engine;
 
 		//Special treatment for background source and buffer
 		ALuint backgroundMusicBuffer, backgroundMusicSource;
+		ALuint textTick;
+		ALuint levelClear;
+		ALuint buttonClick;
 		ALuint selectionSource;
         ALuint battleSoundSource; //default battle sound source, not entity specific
 		WaveInfo *backgroundWaveInfo;
@@ -118,6 +121,10 @@ class Engine;
 		bool pauseBackground();
 		bool resumeBackground();
 		bool playSelect();
+		bool playTick();
+		bool playClear();
+		bool playClick();
+		bool loadStatic(std::string filename, ALuint &source);
 
 		//bool registerCreate(FastEcslent::EntityType et, std::string filename);
                 bool registerSelection(Entity381 et, std::string filename);

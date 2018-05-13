@@ -39,9 +39,10 @@ void Renderable::Tick(float dt){
 	//entity->sceneNode->yaw(Ogre::Degree(-entity->heading)); //ogre's yaw is in the direction of -z
 	entity->sceneNode->setOrientation(entity->orientation);
 	//bounding boxes are rendered so...
+	/*
 	if(entity->isSelected)
 		entity->sceneNode->showBoundingBox(true);
 	else
 		entity->sceneNode->showBoundingBox(false); //or we could do this in the entity mgr every time tab is pressed....
-
+		*/
 }

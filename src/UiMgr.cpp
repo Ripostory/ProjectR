@@ -12,6 +12,7 @@
 #include <EntityMgr.h>
 #include <GameMgr.h>
 #include <Types381.h>
+#include <SoundMgr.h>
 #include <OgreTextAreaOverlayElement.h>
 
 UiMgr::UiMgr(Engine* eng): Mgr(eng){
@@ -56,11 +57,19 @@ void UiMgr::openTextBox(Ogre::String n, Ogre::String text){
 void UiMgr::fillTextBox(Ogre::String text){
 	Ogre::String stringTemp;
 
-	if(current < text.size())
+	if(current < text.size()*2)
 	{
-		stringTemp = text[current];
-		mTextBox->appendText(stringTemp);
-		current++;
+		if (current%2 == 0)
+		{
+			stringTemp = text[current/2];
+			mTextBox->appendText(stringTemp);
+			current++;
+			engine->soundMgr->playTick();
+		}
+		else
+		{
+			current++;
+		}
 	}
 	else
 	{
@@ -144,6 +153,7 @@ bool UiMgr::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id){
 }
 
 void UiMgr::buttonHit(OgreBites::Button *b){
+	engine->soundMgr->playClick();
     if(b->getName()=="MainMenu1")
     {
     	gameStarted = true;
