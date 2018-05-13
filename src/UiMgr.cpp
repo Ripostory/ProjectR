@@ -83,8 +83,7 @@ void UiMgr::LoadLevel(){
 
 	mTrayMgr->createLabel(OgreBites::TL_CENTER,"MenuLabel","PROJECT R(ARRR)",250);
 
-	mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu1", "Start New Game", 250);
-	mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu2", "Load Save Game", 250);
+	mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu1", "Start Game", 250);
 	mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu3", "Quit Game", 250);
 	mTrayMgr->createLabel(OgreBites::TL_BOTTOMLEFT,"DARE","Winners Don't do Drugs",250);
 }
@@ -99,6 +98,16 @@ void UiMgr::Tick(float dt){
 		Interrupt = true;
 		if (!fillingBox && !isOpen)
 		{
+			//load tray
+	    	//load textbox
+	    	mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", "GAME", 800, 150);
+	    	mTextBox->setText("   ");
+	    	mTextBox->setTextAlignment(Ogre::TextAreaOverlayElement::Left);
+	    	mTextBox->setPadding((Ogre::Real)40);
+	    	mTextBox->show();
+	    	mNext = mTrayMgr->createButton(OgreBites::TL_BOTTOMRIGHT, "Next", ">>", 150);
+	    	mNext->show();
+
 	    	fillingBox = true;
 	    	mTextBox->clearText();
 	    	mTextBox->setCaption(name.front());
@@ -166,15 +175,6 @@ void UiMgr::buttonHit(OgreBites::Button *b){
     	engine->entityMgr->lvl = 0;
     	engine->gameMgr->loadLevel1();
 
-    	//load textbox
-    	mTextBox = mTrayMgr->createTextBox(OgreBites::TL_BOTTOM, "Textbox", "GAME", 800, 150);
-    	mTextBox->setText("   ");
-    	mTextBox->setTextAlignment(Ogre::TextAreaOverlayElement::Left);
-    	mTextBox->setPadding((Ogre::Real)40);
-    	mTextBox->show();
-    	mNext = mTrayMgr->createButton(OgreBites::TL_BOTTOMRIGHT, "Next", ">>", 150);
-    	mNext->show();
-
         //starting dialogue
     	openTextBox("Game", "Welcome to Project R(Arrr)!");
     	openTextBox("User", "In this game you will be playing a prisoner aboard a space pirate vessel.");
@@ -197,6 +197,12 @@ void UiMgr::buttonHit(OgreBites::Button *b){
     		Interrupt = false;
     		isOpen = false;
     		fillingBox = false;
+
+    		//clean tray
+    		mTrayMgr->clearTray(OgreBites::TL_BOTTOM);
+    		mTrayMgr->clearTray(OgreBites::TL_BOTTOMRIGHT);
+    		mTrayMgr->destroyWidget(mTextBox);
+    		mTrayMgr->destroyWidget(mNext);
     	}
     	else
     	{
