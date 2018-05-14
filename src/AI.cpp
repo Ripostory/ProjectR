@@ -12,6 +12,7 @@
 #include <Engine.h>
 #include <EntityMgr.h>
 #include <UiMgr.h>
+#include <GameMgr.h>
 
 UnitAI::UnitAI(Entity381* ent, Patroler* pat, Engine* eng):Aspect(ent){
 	patroler = pat;
@@ -25,7 +26,7 @@ UnitAI::~UnitAI(){
 
 bool UnitAI::Done(Entity381* player, Entity381* Patroler)
 {
-	if((player->position - Patroler->position) < Ogre::Vector3(50, 50, 50) && (player->position - Patroler->position) > Ogre::Vector3(-50, -50, -50))
+	if((player->position - Patroler->position) < Ogre::Vector3(30, 30, 30) && (player->position - Patroler->position) > Ogre::Vector3(-30, -30, -30))
 	{
 		return true;
 	}
@@ -41,11 +42,12 @@ void UnitAI::Tick(float dt){
 
 	Entity381* targetEntity = engine->entityMgr->entities[engine->entityMgr->selectedEntityIndex];
 
+	std::cout << "Player Position: " << targetEntity->position << std::endl;
 
 	if(patroler->plane.x == 0)
 	{
 		if(entity->position.x > 0){
-				if (targetEntity->position.x > 550){
+				if ((targetEntity->position - patroler->position) < Ogre::Vector3(50, 500, 500) && (targetEntity->position - patroler->position) > Ogre::Vector3(-50, -500, -500)){
 					//Intercept
 					if(!isAware)
 					{
@@ -71,7 +73,7 @@ void UnitAI::Tick(float dt){
 		}
 
 		else{
-				if (targetEntity->position.x < -550){
+				if ((targetEntity->position - patroler->position) < Ogre::Vector3(50, 500, 500) && (targetEntity->position - patroler->position) > Ogre::Vector3(-50, -500, -500)){
 					//Intercept
 					if(!isAware)
 					{
@@ -100,7 +102,7 @@ std::cout << "On same x plane" << std::endl;
 	else if(patroler->plane.y == 0)
 	{
 		if(entity->position.y > 0){
-				if (targetEntity->position.y > 550){
+				if ((targetEntity->position - patroler->position) < Ogre::Vector3(500, 50, 500) && (targetEntity->position - patroler->position) > Ogre::Vector3(-500, -50, -500)){
 					//Intercept
 					if(!isAware)
 					{
@@ -125,7 +127,7 @@ std::cout << "On same x plane" << std::endl;
 		}
 
 		else{
-				if (targetEntity->position.y < -550){
+				if ((targetEntity->position - patroler->position) < Ogre::Vector3(500, 50, 500) && (targetEntity->position - patroler->position) > Ogre::Vector3(-500, -50, -500)){
 					//Intercept
 					if(!isAware)
 					{
@@ -154,7 +156,7 @@ std::cout << "On same x plane" << std::endl;
 	else if(patroler->plane.z == 0)
 		{
 		if(entity->position.z > 0){
-			 if (targetEntity->position.z > 550){
+			 if ((targetEntity->position - patroler->position) < Ogre::Vector3(500, 500, 50) && (targetEntity->position - patroler->position) > Ogre::Vector3(-500, -500, -50)){
 								//Intercept
 					if(!isAware)
 					{
@@ -164,9 +166,9 @@ std::cout << "On same x plane" << std::endl;
 
 						Ogre::Vector3 difference = Ogre::Vector3(targetEntity->position.x,
 								targetEntity->position.y,
-								600) - entity->position;
+								0) - entity->position;
 
-					entity->desiredHeading = FixAngle(Ogre::Math::ATan2(difference.x, difference.z).valueDegrees());
+					entity->desiredHeading = FixAngle(Ogre::Math::ATan2(difference.x, difference.y).valueDegrees());
 					entity->desiredSpeed = entity->maxSpeed;
 				}
 				else
@@ -178,7 +180,7 @@ std::cout << "On same x plane" << std::endl;
 		}
 
 		else{
-			if (targetEntity->position.y < -550){
+			if ((targetEntity->position - patroler->position) < Ogre::Vector3(500, 500, 50) && (targetEntity->position - patroler->position) > Ogre::Vector3(-500, -500, -50)){
 								//Intercept
 				if(!isAware)
 				{
@@ -186,18 +188,16 @@ std::cout << "On same x plane" << std::endl;
 				}
 				isAware = true;
 
-								Ogre::Vector3 difference = Ogre::Vector3(targetEntity->position.x,
-															targetEntity->position.z,
-															-600) - entity->position;
+								Ogre::Vector3 difference = targetEntity->position - entity->position;
 
-								entity->desiredHeading = FixAngle(Ogre::Math::ATan2(difference.x, difference.z).valueDegrees());
+								entity->desiredHeading = FixAngle(Ogre::Math::ATan2(difference.x, difference.y).valueDegrees());
 								entity->desiredSpeed = entity->maxSpeed;
 
 				}
 				else
 				{
 					//Pace
-
+					isAware = false;
 				}
 		}
 	}
@@ -209,8 +209,11 @@ std::cout << "On same x plane" << std::endl;
 	}
 	entity->speed = Clamp(entity->minSpeed, entity->maxSpeed, entity->speed);
 
-	//std::cout << entity->speed << std::endl;
+	//When I try to go from a heading of 350 to a heading of 10,
+	//I should turn to right/starboard not keep decreasing heading till I get to 10 because it is 20 degrees from -10 (350) to +10 by turning to port/right and
+	//340 degrees from 350 (-10) to 10 by turning left/port
 
+	//now, get new heading from desired heading
 	if(entity->desiredHeading > entity->heading){
 		if(entity->desiredHeading - entity->heading > 180)
 			entity->heading -= entity->turnRate * dt;
@@ -225,7 +228,7 @@ std::cout << "On same x plane" << std::endl;
 	entity->heading = FixAngle(entity->heading);
 
 	if(patroler->plane.x == 0){
-		entity->velocity.y = Ogre::Math::Cos(Ogre::Degree(entity->heading)) * entity->speed; // just to be safe, we do not want ships in the air.
+		entity->velocity.y = Ogre::Math::Tan(Ogre::Degree(entity->heading)) * entity->speed; // just to be safe, we do not want ships in the air.
 		entity->velocity.x = 0; //adjacent/hyp
 		entity->velocity.z = Ogre::Math::Sin(Ogre::Degree(entity->heading)) * entity->speed; //opposite/hyp
 	}
@@ -236,7 +239,7 @@ std::cout << "On same x plane" << std::endl;
 		entity->velocity.z = Ogre::Math::Sin(Ogre::Degree(entity->heading)) * entity->speed; //opposite/hyp
 	}
 	else if(patroler->plane.z == 0){
-		entity->velocity.y = Ogre::Math::Sin(Ogre::Degree(entity->heading)) * entity->speed;; // just to be safe, we do not want ships in the air.
+		entity->velocity.y = Ogre::Math::Tan(Ogre::Degree(entity->heading)) * entity->speed;; // just to be safe, we do not want ships in the air.
 		entity->velocity.x = Ogre::Math::Cos(Ogre::Degree(entity->heading)) * entity->speed; //adjacent/hyp
 		entity->velocity.z = 0; //opposite/hyp
 	}

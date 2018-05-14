@@ -57,7 +57,14 @@ void EntityMgr::CreateEntityOfTypeAtPosition(EntityTypes entType, Ogre::Vector3 
 		ent = (Entity381 *) ( new Player(engine, pos, count++));
 		break;
 	case PatrolerType:
-		ent = (Entity381 *) (new Patroler(engine, pos, count++, {0,1,1}));
+		if(lvl == 1)
+		{
+			ent = (Entity381 *) (new Patroler(engine, pos, count++, {1,1,0}));
+		}
+		else if(lvl == 2)
+		{
+			ent = (Entity381 *) (new Patroler(engine, pos, count++, {0,1,1}));
+		}
 		break;
 	default:
 		ent = (Entity381*) (new Player(engine, pos, count++));//CreateEntity("robot.mesh", pos);

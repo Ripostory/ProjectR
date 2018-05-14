@@ -158,47 +158,37 @@ Patroler::Patroler(Engine *engine, Ogre::Vector3 pos, int ident, Ogre::Vector3 p
 	meshfilename = "robot.mesh";
 	entityType = PatrolerType;
 	this->minSpeed = 0;
-	this->maxSpeed = 50.0f;//meters per second...
-	this->acceleration = 10.0f; // slow
+	this->maxSpeed = 30.0f;//meters per second...
+	this->acceleration = 5.0f; // slow
 	this->turnRate = 40.0f; //2 degrees per second
 	plane = planeInfo;
 
 	UnitAI* ai = new UnitAI(this, this, engine);
 	aspects.push_back((Aspect*) ai);
 
-	if(!planeInfo.x)
+	if(planeInfo.x == 0)
 	{
-		if(this->position.x > 550)
-		{
-			this->orientation = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3(0, 0, 1));
-
-		}
-		else
-		{
-			this->orientation = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(0, 0, 1));
-		}
+		this->orientation = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3(0, 0, 1));
 	}
-	else if(!planeInfo.y)
+	else if(planeInfo.x == -1)
 	{
-		if(this->position.y > 550)
-		{
-			this->orientation = Ogre::Quaternion(Ogre::Degree(180), Ogre::Vector3(1, 0, 0));
-		}
-		else
-		{
-			this->orientation = Ogre::Quaternion(Ogre::Degree(0), Ogre::Vector3(1, 0, 0));
-		}
+		this->orientation = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(0, 0, 1));
 	}
-	else if(!planeInfo.z)
+	else if(planeInfo.y == 0)
 	{
-		if(this->position.z > 550)
-		{
-			this->orientation = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3(1, 0, 0));
-		}
-		else
-		{
-			this->orientation = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(1, 0, 0));
-		}
+		this->orientation = Ogre::Quaternion(Ogre::Degree(180), Ogre::Vector3(1, 0, 0));
+	}
+	else if(planeInfo.y == -1)
+	{
+		this->orientation = Ogre::Quaternion(Ogre::Degree(0), Ogre::Vector3(1, 0, 0));
+	}
+	else if(planeInfo.z == 0)
+	{
+		this->orientation = Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3(1, 0, 0));
+	}
+	else if(planeInfo.z == -1)
+	{
+		this->orientation = Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3(1, 0, 0));
 	}
 
 	//Physics2D* phx = new Physics2D(this);

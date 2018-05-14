@@ -29,7 +29,7 @@ GameMgr::GameMgr(Engine *engine): Mgr(engine) {
 	turnCounter = 0;
 	zoom = 8.0f;
 	zoomMin = 8.0f;
-	zoomMax = 45.0;
+	zoomMax = 45.0f;
 	currentZoom = 8.0f;
 }
 
@@ -211,11 +211,16 @@ void GameMgr::loadLevel2()
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
 	engine->entityMgr->CreateLevel("Level2.mesh");
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(13, 490, -30));
 }
 
 void GameMgr::loadLevel3()
 {
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
+	engine->entityMgr->lvl++;
+	engine->entityMgr->ClearEntities();
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
+	engine->entityMgr->SelectNextEntity();
+	engine->entityMgr->CreateLevel("Level3.mesh");
 }
 
 void GameMgr::loadLevel4()
@@ -237,9 +242,12 @@ void GameMgr::playerWon()
 		{
 			engine->entityMgr->ClearEntities();
 			engine->uiMgr->openTextBox("GAME", "YOU ESCAPED!!");
-			engine->uiMgr->openTextBox("Project Arr Credits", "Ronn(With Two Ns) Quijada:\n Sound\n Physics\n Camera\n Master Computer");
-			engine->uiMgr->openTextBox("Project Arr Credits", "Brianna Blain-Castelli:\n Artificial Intelligence\n Models\n User Interface\n Debugger");
-			engine->uiMgr->openTextBox("Project Arr Credits", "Ryan Fox:\n Artificial Intelligence\n Splash Screen\n User Interface\n Ideas Man");
+			engine->uiMgr->openTextBox("Project Arr Credits", "Ronn(With Two Ns) Quijada - Master Computer:\n Sound\n Physics\n Camera\n ");
+			engine->uiMgr->openTextBox("Project Arr Credits", "Brianna Blain-Castelli - Debugger:\n Artificial Intelligence\n Models\n User Interface\n ");
+			engine->uiMgr->openTextBox("Project Arr Credits", "Ryan Fox - Ideas Man:\n Artificial Intelligence\n Splash Screen\n User Interface\n");
+			engine->uiMgr->mTrayMgr->createLabel(OgreBites::TL_CENTER,"MenuLabel","Thanks For Playing!",250);
+			engine->uiMgr->mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu4", "Play Again", 250);
+			engine->uiMgr->mTrayMgr->createButton(OgreBites::TL_CENTER, "MainMenu3", "Quit Game", 250);
 		}
 		else
 		{
@@ -250,11 +258,12 @@ void GameMgr::playerWon()
 				loadLevel2();
 				winCondition = false;
 			}
-			else if (currentLvl == 100)
+			else if (currentLvl == 1)
 			{
+				engine->uiMgr->openTextBox( "Player", "Level 2 completed!");
+				engine->uiMgr->openTextBox( "Player", "Onto the next");
 				loadLevel3();
 				winCondition = false;
-
 			}
 		}
 	}
