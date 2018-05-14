@@ -45,6 +45,7 @@ public:
 	void loadLevel2();
 	void loadLevel3();
 	void loadLevel4();
+	void resetGame();
 private:
 	void rotateCam(float degrees, Ogre::Vector3 dir);
 	bool winCondition;
