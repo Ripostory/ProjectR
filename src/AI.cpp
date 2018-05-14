@@ -228,7 +228,7 @@ std::cout << "On same x plane" << std::endl;
 	entity->heading = FixAngle(entity->heading);
 
 	if(patroler->plane.x == 0){
-		entity->velocity.y = Ogre::Math::Tan(Ogre::Degree(entity->heading)) * entity->speed; // just to be safe, we do not want ships in the air.
+		entity->velocity.y = Ogre::Math::Cos(Ogre::Degree(entity->heading)) * entity->speed; // just to be safe, we do not want ships in the air.
 		entity->velocity.x = 0; //adjacent/hyp
 		entity->velocity.z = Ogre::Math::Sin(Ogre::Degree(entity->heading)) * entity->speed; //opposite/hyp
 	}
@@ -239,8 +239,8 @@ std::cout << "On same x plane" << std::endl;
 		entity->velocity.z = Ogre::Math::Sin(Ogre::Degree(entity->heading)) * entity->speed; //opposite/hyp
 	}
 	else if(patroler->plane.z == 0){
-		entity->velocity.y = Ogre::Math::Tan(Ogre::Degree(entity->heading)) * entity->speed;; // just to be safe, we do not want ships in the air.
-		entity->velocity.x = Ogre::Math::Cos(Ogre::Degree(entity->heading)) * entity->speed; //adjacent/hyp
+		entity->velocity.y = Ogre::Math::Cos(Ogre::Degree(entity->heading)) * entity->speed;; // just to be safe, we do not want ships in the air.
+		entity->velocity.x = Ogre::Math::Sin(Ogre::Degree(entity->heading)) * entity->speed; //adjacent/hyp
 		entity->velocity.z = 0; //opposite/hyp
 	}
 
@@ -256,6 +256,7 @@ std::cout << "On same x plane" << std::endl;
 	{
 		engine->uiMgr->openTextBox("GAME", "YOU'VE BEEN CAPTURED!");
 		engine->uiMgr->openTextBox("GAME", "AGAIN!");
+		engine->gameMgr->resetGame();
 	}
 
 }

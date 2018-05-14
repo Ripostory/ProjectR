@@ -214,21 +214,18 @@ void GameMgr::loadLevel2()
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
 	engine->entityMgr->CreateLevel("Level2.mesh");
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(13, 490, -30));
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(13, 490, -40));
 }
 
 void GameMgr::loadLevel3()
 {
-<<<<<<< HEAD
-	engine->entityMgr->lvl++;
+	/*engine->entityMgr->lvl++;
 	engine->entityMgr->ClearEntities();
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
 	engine->entityMgr->CreateLevel("Level3.mesh");
-=======
 	resetOrientation();
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));
->>>>>>> 6461b2a9736889f99cf0d6d175be83fc0b2a8369
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));*/
 }
 
 void GameMgr::loadLevel4()
@@ -247,7 +244,7 @@ void GameMgr::resetGame()
 void GameMgr::playerWon()
 {
 	int currentLvl = engine->entityMgr->lvl;
-	int finalLvl = 2;
+	int finalLvl = 1;
 
 	if (!winCondition)
 	{
@@ -274,13 +271,9 @@ void GameMgr::playerWon()
 			}
 			else if (currentLvl == 1)
 			{
-<<<<<<< HEAD
 				engine->uiMgr->openTextBox( "Player", "Level 2 completed!");
 				engine->uiMgr->openTextBox( "Player", "Onto the next");
 				loadLevel3();
-=======
-				resetGame();
->>>>>>> 6461b2a9736889f99cf0d6d175be83fc0b2a8369
 				winCondition = false;
 			}
 		}
