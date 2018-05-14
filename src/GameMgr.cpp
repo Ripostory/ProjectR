@@ -207,8 +207,6 @@ void GameMgr::loadLevel1()
 void GameMgr::loadLevel2()
 {
 	resetOrientation();
-	engine->uiMgr->openTextBox( "Player", "Level 1 completed!");
-	engine->uiMgr->openTextBox( "Player", "Onto the next");
 	engine->entityMgr->lvl++;
 	engine->entityMgr->ClearEntities();
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
@@ -223,19 +221,25 @@ void GameMgr::loadLevel3()
 	engine->entityMgr->ClearEntities();
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
+	engine->entityMgr->CreateLevel("Level3.mesh");
+	resetOrientation();
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(1163, -456, 0));
+}
+
+void GameMgr::loadLevel4()
+{
+	engine->entityMgr->lvl++;
+	engine->entityMgr->ClearEntities();
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
+	engine->entityMgr->SelectNextEntity();
 	engine->entityMgr->CreateLevel("Level4.mesh");
 	resetOrientation();
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(578, -267, -881));
 }
 
-void GameMgr::loadLevel4()
-{
-	resetOrientation();
-
-}
-
 void GameMgr::resetGame()
 {
+	winCondition = false;
 	engine->entityMgr->lvl = 0;
 	engine->entityMgr->ClearEntities();
 	loadLevel1();
@@ -244,7 +248,7 @@ void GameMgr::resetGame()
 void GameMgr::playerWon()
 {
 	int currentLvl = engine->entityMgr->lvl;
-	int finalLvl = 2;
+	int finalLvl = 3;
 
 	if (!winCondition)
 	{
@@ -266,14 +270,24 @@ void GameMgr::playerWon()
 		{
 			if (currentLvl == 0)
 			{
+				engine->uiMgr->openTextBox( "Lt.Astolfo", "Well, at least I'm free from my cell...");
+				engine->uiMgr->openTextBox( "Lt.Astolfo", "Uh oh, a guard is coming!");
+				engine->uiMgr->openTextBox( "Lt.Astolfo", "I just need to get to that door around the corner...");
 				loadLevel2();
 				winCondition = false;
 			}
 			else if (currentLvl == 1)
 			{
-				engine->uiMgr->openTextBox( "Player", "Level 2 completed!");
-				engine->uiMgr->openTextBox( "Player", "Onto the next");
+				engine->uiMgr->openTextBox( "Lt.Astolfo", "Got out of that mess without any trouble.");
+				engine->uiMgr->openTextBox( "Lt.Astolfo", "Look's like one of the loading bays are open; maybe I can slip out through there");
 				loadLevel3();
+				winCondition = false;
+			}
+			else if (currentLvl == 2)
+			{
+				engine->uiMgr->openTextBox( "Lt.Astolfo", "Almost there, I can almost feel it!");
+				engine->uiMgr->openTextBox( "Lt.Astolfo", "Out that escape pod entrance and I'll be free!");
+				loadLevel4();
 				winCondition = false;
 			}
 		}

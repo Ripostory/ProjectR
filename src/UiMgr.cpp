@@ -189,6 +189,12 @@ void UiMgr::buttonHit(OgreBites::Button *b){
 
 
     }
+    else if (b->getName()=="MainMenu4")
+    {
+    	//reset
+    	mTrayMgr->destroyAllWidgets();
+    	engine->gameMgr->resetGame();
+    }
     else if(b->getName()=="Next"){
     	if(dialogue.empty()){
     		mNext = b;
