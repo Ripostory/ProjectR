@@ -219,13 +219,13 @@ void GameMgr::loadLevel2()
 
 void GameMgr::loadLevel3()
 {
-	/*engine->entityMgr->lvl++;
+	engine->entityMgr->lvl++;
 	engine->entityMgr->ClearEntities();
 	engine->entityMgr->CreateEntityOfTypeAtPosition(PlayerType, Ogre::Vector3(0,0,0));
 	engine->entityMgr->SelectNextEntity();
-	engine->entityMgr->CreateLevel("Level3.mesh");
+	engine->entityMgr->CreateLevel("Level4.mesh");
 	resetOrientation();
-	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(300, -100, 0));*/
+	engine->entityMgr->CreateEntityOfTypeAtPosition(PatrolerType, Ogre::Vector3(578, -267, -881));
 }
 
 void GameMgr::loadLevel4()
@@ -244,7 +244,7 @@ void GameMgr::resetGame()
 void GameMgr::playerWon()
 {
 	int currentLvl = engine->entityMgr->lvl;
-	int finalLvl = 1;
+	int finalLvl = 2;
 
 	if (!winCondition)
 	{
